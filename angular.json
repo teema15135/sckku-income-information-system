@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sc-income-information-system"
+    }
+  },
+  "defaultProject": "sc-income-information-system",
+  "cli": {
+    "analytics": "bf3e9c51-74e6-47a4-9e5a-5dcb543cb415"
+  }
 }
