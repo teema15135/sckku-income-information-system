@@ -80,9 +80,19 @@ select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url(./assets/icons/arrow-down.png) 96% / 8% no-repeat #eee;
+  background: url(./assets/icons/arrow-down.png) 96% / 1rem no-repeat #eee;
 }
 
 .not-full-input {
   width: calc(100% - 3rem);
+}
+
+.div-card {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+  box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+  max-width: 80vw !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  background-color: white;
 }
