@@ -1,0 +1,18 @@
+::ng-deep {
+  .card {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+    box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+    max-width: 80vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 3rem !important;
+    .card-header {
+      display: none;
+    }
+  }
+}
+
+td.label-table {
+  padding-left: 5%;
+}

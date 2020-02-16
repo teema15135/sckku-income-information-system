@@ -12,10 +12,6 @@
   height: 100px;
 }
 
-.masthead {
-  height: 100vh;
-  min-height: 500px;
-}
 
 .header-background {
   z-index: -1;
@@ -27,4 +23,10 @@
   background: url(../../../assets/images/bg_welcome.jpg);
   background-size: cover;
   background-position: center center;
+}
+
+.page-holder {
+  padding-left: 160px;
+  padding-top: 256px;
+  color: white;
 }
