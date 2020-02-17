@@ -21,6 +21,9 @@ const routes: Routes = [
         path: 'record-income',
         component: RecordIncomeComponent
       }, {
+        path: 'form',
+        loadChildren: () => import('./form/form.module').then(m => m.FormModule)
+      }, {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

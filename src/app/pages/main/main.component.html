@@ -15,11 +15,11 @@
     </li>
     <li class="nav-item  dropdown">
       <div ngbDropdown class="d-inline-block">
-        <a class="nav-link" routerLinkActive="active" id="dropdownMenu1" ngbDropdownToggle>บันทึก</a>
-        <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li class="dropdown-item" routerLinkActive="active" routerLink="record-income"><a class="text-gray-2" routerLink="record-income" href="#">บันทึกเงินรายได้</a></li>
-          <li class="dropdown-item"><a class="text-gray-2">บันทึกเงินรายได้ค่าธรรมเนียมการศึกษา</a></li>
-        </ul>
+        <a class="nav-link" [ngClass]="{ 'active' : generalActive.isActive || feeActive.isActive }" id="dropdownMenu1" ngbDropdownToggle>บันทึก</a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <a class="dropdown-item text-gray-2" routerLink="form/general" routerLinkActive="active" #generalActive="routerLinkActive" href="#">บันทึกเงินรายได้</a>
+          <a class="dropdown-item text-gray-2" routerLink="form/fee" routerLinkActive="active" #feeActive="routerLinkActive" href="#">บันทึกเงินรายได้ค่าธรรมเนียมการศึกษา</a>
+        </div>
       </div>
     </li>
     <li class="nav-item ">
