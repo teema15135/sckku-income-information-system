@@ -36,7 +36,10 @@
       </div>
     </li>
     <li class="nav-item ">
-      <button class="btn btn-primary btn-lg">Log out</button>
+      <div class="text-right">
+        <button class="btn btn-primary btn-lg" (click)="logout()">Log out</button>
+        <p class="text-gray-2">logged in as {{ (user ? user.username : 'Anonymous') }}</p>
+      </div>
     </li>
   </ul>
 </nav>
