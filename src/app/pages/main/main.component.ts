@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
 }
