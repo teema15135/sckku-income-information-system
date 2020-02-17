@@ -3,11 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Credential } from '../models/credential.model';
 import { LoginResponse } from '../models/authResponse.model';
 import { StorageService } from './storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
   USER_KEY = 'user';
 
@@ -19,18 +22,30 @@ export class AuthService {
     private storage: StorageService
   ) { }
 
+  get isLogin() {
+    return this.loggedIn.value;
+  }
+
   login(cred: Credential) {
     return new Promise((resolve, reject) => {
       this.http.post<LoginResponse>(this.LOGIN_URL, cred, {
         observe: 'response'
       }).subscribe(res => {
         this.setUser(res.body);
+        this.loggedIn.next(true);
         resolve(res.body);
       }, err => {
         if (err.status === 401) {
           resolve(false);
         }
       });
+    });
+  }
+
+  logout() {
+    return new Promise(resolve => {
+      this.loggedIn.next(false);
+      resolve(true);
     });
   }
 
