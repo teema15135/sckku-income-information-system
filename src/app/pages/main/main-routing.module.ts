@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
 import { VerifyComponent } from './verify/verify.component';
 import { RecordIncomeComponent } from './record-income/record-income.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
+        path: 'home',
+        component: HomeComponent
+      }, {
         path: 'verify',
         component: VerifyComponent
       }, {
@@ -18,7 +22,7 @@ const routes: Routes = [
         component: RecordIncomeComponent
       }, {
         path: '',
-        redirectTo: 'verify',
+        redirectTo: 'home',
         pathMatch: 'full'
       }
     ]

@@ -11,15 +11,15 @@
 <nav ngbNav #nav="ngbNav" class="navbar navbar-expand-lg navbar-light">
   <ul class="d-flex justify-content-between w-50 navbar-nav ml-auto pr-5">
     <li class="nav-item ">
-      <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
+      <a class="nav-link" routerLink="home" routerLinkActive="active" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item  dropdown">
       <div ngbDropdown class="d-inline-block">
-        <a class="nav-link" id="dropdownMenu1" ngbDropdownToggle>บันทึก</a>
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <a class="dropdown-item text-gray-2" routerLink="record-income" routerLinkActive="active" href="#">บันทึกเงินรายได้</a>
-          <a class="dropdown-item text-gray-2">บันทึกเงินรายได้ค่าธรรมเนียมการศึกษา</a>
-        </div>
+        <a class="nav-link" routerLinkActive="active" id="dropdownMenu1" ngbDropdownToggle>บันทึก</a>
+        <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li class="dropdown-item" routerLinkActive="active" routerLink="record-income"><a class="text-gray-2" routerLink="record-income" href="#">บันทึกเงินรายได้</a></li>
+          <li class="dropdown-item"><a class="text-gray-2">บันทึกเงินรายได้ค่าธรรมเนียมการศึกษา</a></li>
+        </ul>
       </div>
     </li>
     <li class="nav-item ">

@@ -6,13 +6,15 @@ import { MainComponent } from './main.component';
 import { VerifyComponent } from './verify/verify.component';
 import { NgbAccordionModule, NgbNavModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecordIncomeComponent } from './record-income/record-income.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
     VerifyComponent,
-    RecordIncomeComponent
+    RecordIncomeComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
