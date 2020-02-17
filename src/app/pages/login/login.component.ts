@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { Credential } from 'src/app/models/credential.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,19 +12,35 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  // postDate = {
-  //   username: 'user1',   // get username and password from input
-  //   password: 'forsckku'  
-  // }
-  // url = 'http://localhost:3000/auth/login'
+  credForm: FormGroup;
 
-  // constructor(private http: HttpClient) { 
-  //   this.http.post(this.url, this.postDate).toPromise().then(data => {
-  //     console.log(data)
-  //   })
-  // }
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.credForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+  }
+
+  login() {
+    if (!this.credForm.valid) {
+      alert('Please fill form.');
+      return;
+    }
+    const cred: Credential = this.credForm.value;
+    this.auth.login(cred).then(res => {
+      if (res) {
+        alert('Login success');
+        this.router.navigate(['/main']);
+      } else {
+        alert('Login fail username or password might not match');
+      }
+    });
   }
 
 }
