@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Credential } from '../models/credential.model';
 import { LoginResponse } from '../models/authResponse.model';
+import { User } from '../models/user.model';
 import { StorageService } from './storage.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -49,11 +50,11 @@ export class AuthService {
     });
   }
 
-  setUser(user) {
+  setUser(user: User) {
     this.storage.setObj(this.USER_KEY, user);
   }
 
-  getUser() {
+  getUser(): User {
     return this.storage.getObj(this.USER_KEY);
   }
 }
