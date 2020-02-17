@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main.component';
 import { VerifyComponent } from './verify/verify.component';
-import { RecordIncomeComponent } from './record-income/record-income.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -17,9 +16,6 @@ const routes: Routes = [
       }, {
         path: 'verify',
         component: VerifyComponent
-      }, {
-        path: 'record-income',
-        component: RecordIncomeComponent
       }, {
         path: 'form',
         loadChildren: () => import('./form/form.module').then(m => m.FormModule)
