@@ -5,6 +5,7 @@ import { LoginResponse } from '../models/authResponse.model';
 import { User } from '../models/user.model';
 import { StorageService } from './storage.service';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,7 @@ export class AuthService {
 
   USER_KEY = 'user';
 
-  WEB_SERVICE_URL = `https://protected-shelf-83050.herokuapp.com`;
-  LOGIN_URL = `${this.WEB_SERVICE_URL}/auth/login`;
+  LOGIN_URL = `${environment.apiDomainName}/auth/login`;
 
   constructor(
     private http: HttpClient,

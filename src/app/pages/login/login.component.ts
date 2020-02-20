@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
 
   credForm: FormGroup;
 
+  loggingIn = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
@@ -30,11 +32,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    if (this.loggingIn) {
+      return;
+    }
     if (!this.credForm.valid) {
       alert('Please fill form.');
       return;
     }
     const cred: Credential = this.credForm.value;
+    this.loggingIn = true;
     this.auth.login(cred).then(res => {
       if (res) {
         alert('Login success');
@@ -42,7 +48,8 @@ export class LoginComponent implements OnInit {
       } else {
         alert('Login fail username or password might not match');
       }
-    });
+    }).catch(err => console.error(err))
+    .finally(() => this.loggingIn = false);
   }
 
 }
