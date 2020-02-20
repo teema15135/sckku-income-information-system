@@ -2,7 +2,7 @@
   <h2 class="font-weight-bold text-gray-1">บันทึกข้อมูลเงินรายได้</h2>
   <div class="d-flex w-100">
     <div class="w-100 pt-4">
-      <form>
+      <form [formGroup]="fg">
         <table class="w-100">
           <tbody>
             <tr>
@@ -10,11 +10,8 @@
                 วันที่ใบเสร็จรับเงิน
               </td>
               <td class="w-25 py-2 input-table">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="วว/ดด/ปปปป"
-                />
+                <input (click)="inv.toggle()" type="text" class="form-control d-inline not-full-input mr-3" ngbDatepicker #inv="ngbDatepicker" (dateSelect)="onDateSelect($event,'receiptDate')" />
+                <ion-icon (click)="inv.toggle()" class="input-icon" name="calendar-outline"></ion-icon>
               </td>
               <td class="w-25 py-2 label-table text-gray-0"></td>
               <td class="w-25 py-2 input-table"></td>
@@ -22,33 +19,34 @@
             <tr>
               <td class="w-25 py-2 label-table text-gray-0">ได้รับเงินจาก</td>
               <td class="w-25 py-2 input-table">
-                <select type="text" class="form-control">
-                  <option value="a"></option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
+                <select formControlName="paymentLocation" type="text" class="form-control">
+                  <option value="Counter">Counter</option>
+                  <option value="KKUFMIS">KKUFMIS</option>
                 </select>
               </td>
               <td class="w-25 py-2 label-table text-gray-0">
                 ประเภทการรับเงิน
               </td>
               <td class="w-25 py-2 input-table">
-                <select type="text" class="form-control">
-                  <option value="a"></option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
+                <select formControlName="receivingType" type="text" class="form-control">
+                  <option value="เช็ค">เช็ค</option>
+                  <option value="เงินสด">เงินสด</option>
+                  <option value="โอน">โอน</option>
+                  <option value="ใบนำฝาก">ใบนำฝาก</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td class="w-25 py-2 label-table text-gray-0">ชื่อหน่วยงาน</td>
               <td class="w-25 py-2 input-table">
-                <input type="text" class="form-control" />
+                <input formControlName="departmentName" type="text" class="form-control" />
               </td>
               <td class="w-25 py-2 label-table text-gray-0">
                 วันที่นำฝาก (เช็ค/เงินโอน/ใบนำฝาก)
               </td>
               <td class="w-25 py-2 input-table">
-                <input type="text" class="form-control" />
+                <input (click)="dep.toggle()" type="text" class="form-control d-inline not-full-input mr-3" ngbDatepicker #dep="ngbDatepicker" (dateSelect)="onDateSelect($event, 'dateDeposit')" />
+                <ion-icon (click)="dep.toggle()" class="input-icon" name="calendar-outline"></ion-icon>
               </td>
             </tr>
             <tr>
@@ -56,39 +54,44 @@
                 เลขที่ใบเสร็จรับเงิน
               </td>
               <td class="w-25 py-2 input-table">
-                <input type="text" class="form-control" />
+                <input formControlName="receiptNumber" type="text" class="form-control" />
               </td>
-              <td class="w-25 py-2 label-table text-gray-0">เลขที่เช็ค</td>
-              <td class="w-25 py-2 input-table">
-                <input type="text" class="form-control" />
+              <td class="w-25 py-2 label-table text-gray-0" [ngClass]="{'d-none': this.fg.value.receivingType !== 'เช็ค'}">เลขที่เช็ค</td>
+              <td class="w-25 py-2 input-table" [ngClass]="{'d-none': this.fg.value.receivingType !== 'เช็ค'}">
+                <input formControlName="checkNumber" type="text" class="form-control" />
               </td>
             </tr>
             <tr>
               <td class="w-25 py-2 label-table text-gray-0">ชื่อสาขาวิชา</td>
               <td class="w-25 py-2 input-table">
-                <select type="text" class="form-control">
-                  <option value="a"></option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
+                <select formControlName="branchName" type="text" class="form-control">
+                  <option value="สำนักงานคณบดี">สำนักงานคณบดี</option>
+                  <option value="นิติวิทย์">นิติวิทย์</option>
+                  <option value="วิทย์-ชีวภาพ">วิทย์-ชีวภาพ</option>
+                  <option value="วัสดุศาสตร์">วัสดุศาสตร์</option>
+                  <option value="คณิตศาสตร์">คณิตศาสตร์</option>
+                  <option value="เคมี">เคมี</option>
+                  <option value="จุลชีววิทยา">จุลชีววิทยา</option>
+                  <option value="ชีวเคมี">ชีวเคมี</option>
+                  <option value="ชีววิทยา">ชีววิทยา</option>
+                  <option value="สิ่งแวดล้อม">สิ่งแวดล้อม</option>
+                  <option value="ฟิสิกส์">ฟิสิกส์</option>
+                  <option value="คอมพิวเตอร์">คอมพิวเตอร์</option>
+                  <option value="สถิติ">สถิติ</option>
+                  <option value="วมว.">วมว.</option>
                 </select>
               </td>
-              <td class="w-25 py-2 label-table text-gray-0">วันที่เช็ค</td>
-              <td class="w-25 py-2 input-table">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="วว/ดด/ปปปป"
-                />
+              <td class="w-25 py-2 label-table text-gray-0" [ngClass]="{'d-none': this.fg.value.receivingType !== 'เช็ค'}">วันที่เช็ค</td>
+              <td class="w-25 py-2 input-table" [ngClass]="{'d-none': this.fg.value.receivingType !== 'เช็ค'}">
+                <input (click)="check.toggle()" type="text" class="form-control d-inline not-full-input mr-3" ngbDatepicker #check="ngbDatepicker" (dateSelect)="onDateSelect($event, 'checkDate')" />
+                <ion-icon (click)="check.toggle()" class="input-icon" name="calendar-outline"></ion-icon>
               </td>
             </tr>
             <tr>
               <td class="w-25 py-2 label-table text-gray-0">รหัสบัญชี</td>
               <td class="w-25 py-2 input-table">
-                <select type="text" class="form-control">
-                  <option value="a"></option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
-                </select>
+                <input formControlName="accountCode" type="text" class="form-control" placeholder="XXX-XX-XX"
+                  disabled />
               </td>
               <td class="w-25 py-2 label-table text-gray-0"></td>
               <td class="w-25 py-2 input-table"></td>
@@ -98,27 +101,28 @@
                 รายการรายได้ - KKU
               </td>
               <td class="w-25 py-2 input-table">
-                <input type="text" class="form-control" />
+                <input formControlName="incomeListKku" type="text" class="form-control" placeholder="" disabled />
               </td>
               <td class="w-25 py-2 label-table text-gray-0 font-weight-bold">
                 จำนวนเงิน
               </td>
               <td class="w-25 py-2 input-table">
-                <input
-                  type="text"
-                  class="form-control d-inline not-full-input mr-3"
-                />
+                <input formControlName="amountOfMoney" type="number"
+                  class="form-control d-inline not-full-input mr-3" />
                 <p class="d-inline">บาท</p>
               </td>
             </tr>
             <tr>
               <td class="w-25 py-2 label-table text-gray-0">รหัสรายได้ - SC</td>
               <td class="w-25 py-2 input-table">
-                <select type="text" class="form-control">
-                  <option value="a"></option>
-                  <option value="b">b</option>
-                  <option value="c">c</option>
-                </select>
+                <ng-autocomplete [data]="scNumberData" [searchKeyword]="scKeyword" (selected)="onSelectSCNumber($event)"
+                  [itemTemplate]="itemTemplate">
+                </ng-autocomplete>
+                <ng-template #itemTemplate let-item>
+                  <div class="item">
+                    <span [innerHTML]="item.sc"></span>
+                  </div>
+                </ng-template>
               </td>
               <td class="w-25 py-2 label-table text-gray-0"></td>
               <td class="w-25 py-2 input-table"></td>
@@ -128,7 +132,7 @@
                 รายการรายได้ - SC
               </td>
               <td class="w-25 py-2 input-table">
-                <input type="text" class="form-control" />
+                <input formControlName="incomeListSc" type="text" class="form-control" />
               </td>
               <td class="w-25 py-2 label-table text-gray-0"></td>
               <td class="w-25 py-2 input-table"></td>
@@ -136,7 +140,7 @@
             <tr>
               <td class="w-25 py-2 label-table text-gray-0">รายละเอียด</td>
               <td class="w-25 py-2 input-table">
-                <input type="text" class="form-control" />
+                <input formControlName="details" type="text" class="form-control" />
               </td>
               <td class="w-25 py-2 label-table text-gray-0"></td>
               <td class="w-25 py-2 input-table"></td>
@@ -144,6 +148,10 @@
           </tbody>
         </table>
       </form>
+      <div class="d-flex justify-content-center mx-auto my-4 w-25">
+        <button [disabled]="!this.fg.valid" class="btn btn-primary mx-3" (click)="sendForm()">บันทึก</button>
+        <button class="btn btn-gray mx-3" (click)="clearForm()">ยกเลิก</button>
+      </div>
     </div>
   </div>
 </div>

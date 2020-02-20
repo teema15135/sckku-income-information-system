@@ -1,18 +1,34 @@
-.btn-primary {
-  background-color: var(--primary-tint) !important;
+.btn {
   border-width: 0;
   border-radius: 100vh;
-  width: 15vh;
-  height: 5vh;
+  padding: 0;
+  width: 15rem;
+  height: 3rem;
   font-size: 20;
   font-weight: bold;
+}
+
+.btn-primary {
+  background-color: var(--primary-tint) !important;
 }
 .btn-primary:hover {
   background-color: var(--primary-shade) !important;
 }
 .btn-primary.focus, .btn-primary:focus {
   box-shadow: none !important;
-  background-color: var(--primary-shade) !important;
+  background-color: var(--primary-tint) !important;
+}
+
+.btn-gray {
+  background-color: var(--gray-2) !important;
+  color: white;
+}
+.btn-gray:hover {
+  background-color: var(--gray-5) !important;
+}
+.btn-gray.focus, .btn-gray:focus {
+  box-shadow: none !important;
+  background-color: var(--gray-2) !important;
 }
 
 .text-primary {
@@ -99,4 +115,23 @@ select {
   margin-left: auto !important;
   margin-right: auto !important;
   background-color: white;
+}
+
+ion-icon {
+  font-size: large;
+  color: var(--gray-1)
+}
+
+div.autocomplete-container {
+  box-shadow: none;
+  position: relative;
+  height: initial;
+}
+
+div.autocomplete-container > div.input-container > input {
+  background-color: var(--gray-7);
+  color: var(--gray-2);
+  border-radius: .75rem;
+  border: none;
+  padding-left: 1.5rem;
 }
