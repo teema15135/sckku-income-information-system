@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SC_MAP } from '../../../../shared/sc-number-map';
 import { SCNumber } from 'src/app/models/scMap.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RecordService } from 'src/app/services/record.service';
 
 @Component({
   selector: 'app-general-income',
@@ -13,8 +14,11 @@ export class GeneralIncomeComponent implements OnInit {
   public scNumberData: SCNumber[] = [];
   public scKeyword = 'sc';
 
+  private isSending = false;
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private recordService: RecordService
   ) { }
 
   fg: FormGroup;
@@ -62,16 +66,42 @@ export class GeneralIncomeComponent implements OnInit {
 
 
   sendForm() {
+    if (this.isSending) {
+      return;
+    }
+    this.isSending = true;
     console.log(this.fg.value);
-    if (this.fg.value.receivingType === 'เช็ค') {
+    if (this.fg.value.receivingType === 'check') {
       if (this.fg.value.checkNumber === '' || this.fg.value.checkDate === '') {
         alert('Please fill Check number and Check date');
         return;
       }
     }
+    this.recordService.saveIncomeRecord(this.fg.value).then(res => {
+      console.log(res);
+      alert('บันทึกสำเร็จ');
+      this.isSending = false;
+      this.clearForm();
+    });
   }
 
   clearForm() {
+    this.fg.setValue({
+      receiptDate: '',       // วันที่ใบเสร็จรับเงิน
+      paymentLocation: '',   // ได้รับเงินจาก
+      departmentName: '',    // ชื่อหน่วยงาน
+      receiptNumber: '',     // เลขที่ใบเสร็จรับเงิน
+      branchName: '',        // ชื่อสาขาวิชา
+      accountCode: '',       // รหัสบัญชี*
+      incomeListKku: '',     // รายการรายได้ - KKU*
+      incomeCodeSc: '',      // รหัสรายได้ - SC*
+      incomeListSc: '',      // รายการรายได้ - SC*
+      details: '',           // รายละเอียด
+      receivingType: '',     // ประเภทการรับเงิน
+      dateDeposit: '',       // วันที่นำฝาก (เช็ค/เงินโอน/ใบนำฝาก)
+      checkNumber: '',       // เลขที่เช็ค
+      checkDate: '',         // วันที่เช็ค
+      amountOfMoney: ''
+    });
   }
-
 }
