@@ -16,4 +16,5 @@ export class IncomeRecord {
   checkNumber: string;
   checkDate: string;
   amountOfMoney: number;
+  creditAmount: number;
 }

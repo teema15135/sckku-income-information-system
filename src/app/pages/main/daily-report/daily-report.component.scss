@@ -1,0 +1,52 @@
+.date-column > p {
+  width: 8rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.invoice-column > p {
+  width: 10rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.sc-number-column > p {
+  width: 10rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.name-column > p {
+  width: 20rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.branch-column > p {
+  width: 10rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.debit-column > p {
+  width: 8rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.credit-column > p {
+  width: 8rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.total-column > p {
+  width: 10rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-card {
+  width: 90vw !important;
+  overflow-x: scroll;
+}

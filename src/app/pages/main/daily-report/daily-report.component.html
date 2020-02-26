@@ -1,1 +1,28 @@
-<p>daily-report works!</p>
+<div class="w-100">
+  <div class="div-card">
+    <table class="d-inline-block">
+      <tbody>
+        <tr class="bg-lightgray">
+          <th class="px-4 py-4 text-gray-0 date-column"><p>วัน/เดือน/ปี</p></th>
+          <th class="px-4 py-4 text-gray-0 invoice-column"><p>เลขที่ใบเสร็จรับเงิน</p></th>
+          <th class="px-4 py-4 text-gray-0 sc-number-column"><p>รหัสรายรับ</p></th>
+          <th class="px-4 py-4 text-gray-0 name-column"><p>รายการ</p></th>
+          <th class="px-4 py-4 text-gray-0 branch-column"><p>หน้าบัญชี</p></th>
+          <th class="px-4 py-4 text-gray-0 debit-column"><p>เดบิต</p></th>
+          <th class="px-4 py-4 text-gray-0 credit-column"><p>เครดิต</p></th>
+          <th class="px-4 py-4 text-gray-0 total-column"><p>ยอดคงเหลือ</p></th>
+        </tr>
+        <tr *ngFor="let record of reports; let i=index;">
+          <td class="px-4 py-3 text-gray-0 date-column"><p>{{ record.receiptDate }}</p></td>
+          <td class="px-4 py-3 text-gray-0 invoice-column"><p>{{ record.receiptNumber }}</p></td>
+          <td class="px-4 py-3 text-gray-0 sc-number-column"><p>{{ record.incomeCodeSc }}</p></td>
+          <td class="px-4 py-3 text-gray-0 name-column"><p>{{ record.incomeListSc }}</p></td>
+          <td class="px-4 py-3 text-gray-0 branch-column"><p>{{ record.branchName }}</p></td>
+          <td class="px-4 py-3 text-gray-0 debit-column"><p>{{ record.amountOfMoney }}</p></td>
+          <td class="px-4 py-3 text-gray-0 credit-column"><p>{{ record.creditAmount }}</p></td>
+          <td class="px-4 py-3 text-gray-0 total-column"><p>{{ sumTo(i) }}</p></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
