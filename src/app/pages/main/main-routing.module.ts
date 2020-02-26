@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main.component';
 import { VerifyComponent } from './verify/verify.component';
 import { HomeComponent } from './home/home.component';
+import { DailyReportComponent } from './daily-report/daily-report.component';
+import { SummaryReportComponent } from './summary-report/summary-report.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,12 @@ const routes: Routes = [
       }, {
         path: 'verify',
         component: VerifyComponent
+      }, {
+        path: 'daily-report',
+        component: DailyReportComponent
+      }, {
+        path: 'summary-report',
+        component: SummaryReportComponent
       }, {
         path: 'form',
         loadChildren: () => import('./form/form.module').then(m => m.FormModule)
