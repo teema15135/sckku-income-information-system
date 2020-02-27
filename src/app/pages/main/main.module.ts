@@ -8,6 +8,8 @@ import { NgbAccordionModule, NgbNavModule, NgbDropdownModule } from '@ng-bootstr
 import { HomeComponent } from './home/home.component';
 import { DailyReportComponent } from './daily-report/daily-report.component';
 import { SummaryReportComponent } from './summary-report/summary-report.component';
+import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {DemoMaterialModule} from './summary-report/material-module';
 
 
 @NgModule({
@@ -16,7 +18,7 @@ import { SummaryReportComponent } from './summary-report/summary-report.componen
     VerifyComponent,
     HomeComponent,
     DailyReportComponent,
-    SummaryReportComponent
+    SummaryReportComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,10 @@ import { SummaryReportComponent } from './summary-report/summary-report.componen
     NgbAccordionModule,
     NgbNavModule,
     NgbDropdownModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    DemoMaterialModule,
   ]
 })
 export class MainModule { }

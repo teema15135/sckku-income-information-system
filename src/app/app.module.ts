@@ -10,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, MatSortModule } from '@angular/material';
+import {DemoMaterialModule} from '../app/pages/main/summary-report/material-module';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,11 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     ReactiveFormsModule,
     HttpClientModule,
     IonicModule.forRoot(),
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    DemoMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { ReportService } from 'src/app/services/report.service';
 
 @Component({
   selector: 'app-summary-report',
@@ -7,9 +9,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryReportComponent implements OnInit {
 
-  constructor() { }
+  //ใบเสร็จเล่มที่, รหัสหน่วยงาน
+  displayedColumns = [
+    'receiptDate', 
+    'receiptNumber', 
+    'accountCode', 
+    'incomeCodeSc', 
+    'incomeListKku', 
+    'incomeListSc', 
+    'details', 
+    'receivingType', 
+    'amountOfMoney', 
+    'departmentName', 
+  ];
+  dataSource : PeriodicElement[] = []
+
+  constructor(
+    private reportService: ReportService
+  ) { }
 
   ngOnInit() {
+    this.callService()
   }
 
+  callService() {
+    this.reportService.getSummaryReportData().then(res => {
+      console.log('res is ', res)
+      this.dataSource = res
+    });
+  }
+
+}
+
+export interface PeriodicElement {
+  _id: string
+  receiptDate: string;
+  receiptNumber: string;
+  accountCode: string;
+  incomeCodeSc: string;
+  incomeListKku: string;
+  incomeListSc: string;
+  details: string;
+  receivingType: string;
+  amountOfMoney: number;
+  departmentName: string;
 }
