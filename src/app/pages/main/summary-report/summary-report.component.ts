@@ -22,7 +22,7 @@ export class SummaryReportComponent implements OnInit {
     'amountOfMoney', 
     'departmentName', 
   ];
-  dataSource : PeriodicElement[] = []
+  dataSource: any = []
 
   constructor(
     private reportService: ReportService
