@@ -4,7 +4,9 @@
 @import './theme/variable.scss';
 @import './bootstrap/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sarabun&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Pridi:200&display=swap');
 
 html, body {
-  font-family: 'Prompt', 'san-serif';
+  font-family: 'san-serif', 'Sarabun', 'Prompt', 'Pridi', ;
 }
