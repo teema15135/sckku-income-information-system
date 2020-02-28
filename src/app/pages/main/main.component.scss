@@ -1,5 +1,5 @@
 nav {
-  height: 20vh;
+  height: 15vh;
 }
 
 .nav-link {
@@ -25,8 +25,8 @@ nav {
   font-size: x-small;
 }
 .logo {
-  flex-basis: 100px;
-  width: 100px;
+  flex-basis: 80px;
+  width: 80px;
   opacity: 0.75;
 }
 
@@ -37,4 +37,9 @@ nav {
 
 .nav-link, .dropdown-item > a {
   cursor: pointer;
+}
+
+.logoutTextStyle {
+  font-size: 12px;
+  color: var(--gray-2)
 }
