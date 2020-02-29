@@ -23,7 +23,37 @@ export class ReportService {
       }, err => {
         if (err.status === 401) {
           resolve([{
-            rreceiptDate: "-",
+            receiptDate: "-",
+            receiptNumber: "-",
+            accountCode: "-",
+            incomeCodeSc: "-",
+            incomeListKku: "-",
+            incomeListSc: "-",
+            details: "-",
+            receivingType: "-",
+            amountOfMoney: "-",
+            departmentName: "-",
+          }])
+        }
+        else {
+          reject(err);
+        }
+        http.unsubscribe();
+      });
+    });
+  }
+
+  getSummaryReportFinding(incomeCodeSc: string) {
+    return new Promise((resolve, reject) => {
+      const http = this.http.get(`${environment.apiDomainName}/report/2/${incomeCodeSc}`, {
+        observe: 'response'
+      }).subscribe(res => {
+        resolve(res.body);
+        http.unsubscribe();
+      }, err => {
+        if (err.status === 401) {
+          resolve([{
+            receiptDate: "-",
             receiptNumber: "-",
             accountCode: "-",
             incomeCodeSc: "-",
@@ -94,5 +124,6 @@ export class ReportService {
       });
     });
   }
+
 
 }

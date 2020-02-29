@@ -1,10 +1,16 @@
 <div class="example-container mat-elevation-z8">
-  <!-- <mat-form-field>
-    <mat-label>ค้นหา</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="ตัวอย่าง 420-00-0000" />
-  </mat-form-field> -->
-
-  <h2 class="font-weight-bold text-gray-1 title">รายงานบันทึกรายได้รวม</h2>
+  <div class="d-flex justify-content-between">
+    <h2 class="font-weight-bold text-gray-1 title">รายงานบันทึกรายได้รวม</h2>
+    <mat-form-field>
+      <mat-label>ค้นหา</mat-label>
+      <input
+        matInput
+        (keyup.enter)="callServiceFinding($event)"
+        placeholder="ตัวอย่าง 420-00-0000"
+      />
+      <mat-icon matSuffix (click)="callServiceFinding()">search</mat-icon>
+    </mat-form-field>
+  </div>
 
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="receiptDate">

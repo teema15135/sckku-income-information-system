@@ -44,6 +44,17 @@ export class SummaryReportComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  callServiceFinding(event : Event) {
+    console.log('clicked')
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const incomeCodeSc = this.dataSource.filter
+    this.reportService.getSummaryReportFinding(incomeCodeSc).then(res => {
+      console.log('res is ', res)
+      this.dataSource = res
+    });
+  }
+
 }
 
 export interface PeriodicElement {
