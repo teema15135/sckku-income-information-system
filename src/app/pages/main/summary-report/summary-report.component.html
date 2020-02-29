@@ -1,57 +1,79 @@
 <div class="example-container mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource">
-  
-      <ng-container matColumnDef="receiptDate">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> วันที่ใบเสร็จ </th>
-        <td mat-cell *matCellDef="let element"> {{element.receiptDate}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="receiptNumber">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> เลขที่ใบเสร็จ </th>
-        <td mat-cell *matCellDef="let element"> {{element.receiptNumber}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="accountCode">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> รหัสบัญชี </th>
-        <td mat-cell *matCellDef="let element"> {{element.accountCode}} </td>
-      </ng-container>
+  <!-- <mat-form-field>
+    <mat-label>ค้นหา</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="ตัวอย่าง 420-00-0000" />
+  </mat-form-field> -->
 
-      <ng-container matColumnDef="incomeCodeSc">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> รหัสรายรับ-SC </th>
-        <td mat-cell *matCellDef="let element"> {{element.incomeCodeSc}} </td>
-      </ng-container>
+  <h2 class="font-weight-bold text-gray-1 title">รายงานบันทึกรายได้รวม</h2>
 
-      <ng-container matColumnDef="incomeListKku">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> รายการรายรับ-KKU </th>
-        <td mat-cell *matCellDef="let element"> {{element.incomeListKku}} </td>
-      </ng-container>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="receiptDate">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        วันที่ใบเสร็จ
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.receiptDate }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="incomeListSc">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> รายการรายรับ-SC </th>
-        <td mat-cell *matCellDef="let element"> {{element.incomeListSc}} </td>
-      </ng-container>
+    <ng-container matColumnDef="receiptNumber">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        เลขที่ใบเสร็จ
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.receiptNumber }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="details">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> รายละเอียดรายรับ-SC </th>
-        <td mat-cell *matCellDef="let element"> {{element.details}} </td>
-      </ng-container>
+    <ng-container matColumnDef="accountCode">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">รหัสบัญชี</th>
+      <td mat-cell *matCellDef="let element">{{ element.accountCode }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="receivingType">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> ประเภทเงินสนับสนุน </th>
-        <td mat-cell *matCellDef="let element"> {{element.receivingType}} </td>
-      </ng-container>
+    <ng-container matColumnDef="incomeCodeSc">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        รหัสรายได้-SC
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.incomeCodeSc }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="amountOfMoney">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> จำนวนเงิน </th>
-        <td mat-cell *matCellDef="let element"> {{element.amountOfMoney}} </td>
-      </ng-container>
+    <ng-container matColumnDef="incomeListKku">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        รายการรายได้-KKU
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.incomeListKku }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="departmentName">
-        <th mat-header-cell *matHeaderCellDef class="headerStyle"> ชื่อหน่วยงาน </th>
-        <td mat-cell *matCellDef="let element"> {{element.departmentName}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
+    <ng-container matColumnDef="incomeListSc">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        รายการรายได้-SC
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.incomeListSc }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        รายละเอียดรายได้-SC
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.details }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="receivingType">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        ประเภทเงินสนับสนุน
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.receivingType }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="amountOfMoney">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">จำนวนเงิน</th>
+      <td mat-cell *matCellDef="let element">{{ element.amountOfMoney }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="departmentName">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+        ชื่อหน่วยงาน
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.departmentName }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

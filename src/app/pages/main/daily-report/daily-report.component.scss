@@ -1,18 +1,33 @@
-::ng-deep {
-    .card {
-      -webkit-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
-      -moz-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
-      box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
-      margin-left: auto !important;
-      margin-right: auto !important;
-      padding: 3rem !important;
-      .card-header {
-        display: none;
-      }
-    }
-  }
-  
-  td.label-table {
-    padding-left: 5%;
-  }
-  
+.example-container {
+  height: 100%;
+  overflow: auto;
+  background-color: white;
+}
+
+table {
+  width: 100%;
+}
+
+.headerStyle {
+  background-color: white;
+}
+
+.mat-cell {
+  font-size: 16px;
+}
+
+.mat-header-cell {
+  border-bottom: 3px solid #e0e0e0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.mat-form-field {
+  margin-top: 2%;
+  margin-right: 5%;
+}
+
+.title {
+  margin-left: 2%;
+  margin-top: 2%;
+}
