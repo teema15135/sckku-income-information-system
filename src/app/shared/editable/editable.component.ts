@@ -1,15 +1,13 @@
-import { Component, OnInit, ElementRef, Output, ContentChild } from '@angular/core';
-import { EventEmitter } from 'protractor';
+import { Component, OnInit, ElementRef, Output, ContentChild, EventEmitter, OnDestroy } from '@angular/core';
 import { ViewModeDirective } from './directive/view-mode.directive';
 import { EditModeDirective } from './directive/edit-mode.directive';
-import { Subject, fromEvent } from 'rxjs';
+import { Subject, fromEvent, Subscription } from 'rxjs';
 import { take, filter, switchMapTo } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'editable',
-  templateUrl: './editable.component.html',
-  styleUrls: ['./editable.component.scss']
+  template: `<ng-container *ngTemplateOutlet="currentView"></ng-container>`,
 })
 export class EditableComponent implements OnInit {
 
@@ -22,16 +20,21 @@ export class EditableComponent implements OnInit {
   editMode = new Subject();
   editMode$ = this.editMode.asObservable();
 
+  viewSub: Subscription;
+  editSub: Subscription;
+
   constructor(
     private host: ElementRef
   ) { }
 
   ngOnInit() {
+    this.mode = 'view';
     this.viewModeHandler();
     this.editModeHandler();
   }
 
   get currentView() {
+    // return this.viewModeTpl.tpl;
     return this.mode === 'view' ? this.viewModeTpl.tpl : this.editModeTpl.tpl;
   }
 
@@ -40,8 +43,8 @@ export class EditableComponent implements OnInit {
   }
 
   private viewModeHandler() {
-    fromEvent(this.element, 'click').pipe(
-      untilDestroyed(this)
+    this.viewSub = fromEvent(this.element, 'click').pipe(
+      // untilDestroyed(this)
     ).subscribe(() => {
       this.mode = 'edit';
       this.editMode.next(true);
@@ -56,7 +59,7 @@ export class EditableComponent implements OnInit {
 
     this.editMode$.pipe(
       switchMapTo(clickOutside$),
-      untilDestroyed(this)
+      // untilDestroyed(this)
     ).subscribe(event => {
       this.update.emit(null);
       this.mode = 'view';

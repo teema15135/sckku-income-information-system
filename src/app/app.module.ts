@@ -22,7 +22,6 @@ import { EditableComponent } from './shared/editable/editable.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    // EditableComponent,
   ],
   imports: [
     NgbModule,

@@ -9,8 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { DailyReportComponent } from './daily-report/daily-report.component';
 import { SummaryReportComponent } from './summary-report/summary-report.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import {DemoMaterialModule} from './summary-report/material-module';
-
+import { DemoMaterialModule } from './summary-report/material-module';
+import { EditableComponent } from 'src/app/shared/editable/editable.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ViewModeDirective } from 'src/app/shared/editable/directive/view-mode.directive';
+import { EditModeDirective } from 'src/app/shared/editable/directive/edit-mode.directive';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,9 @@ import {DemoMaterialModule} from './summary-report/material-module';
     HomeComponent,
     DailyReportComponent,
     SummaryReportComponent,
+    EditableComponent,
+    ViewModeDirective,
+    EditModeDirective
   ],
   imports: [
     CommonModule,
@@ -30,6 +37,7 @@ import {DemoMaterialModule} from './summary-report/material-module';
     MatPaginatorModule,
     MatSortModule,
     DemoMaterialModule,
-  ]
+    ReactiveFormsModule
+  ],
 })
 export class MainModule { }
