@@ -23,19 +23,18 @@ export class ReportService {
       }, err => {
         if (err.status === 401) {
           resolve([{
-            receiptDate: "-",
-            receiptNumber: "-",
-            accountCode: "-",
-            incomeCodeSc: "-",
-            incomeListKku: "-",
-            incomeListSc: "-",
-            details: "-",
-            receivingType: "-",
-            amountOfMoney: "-",
-            departmentName: "-",
-          }])
-        }
-        else {
+            receiptDate: '-',
+            receiptNumber: '-',
+            accountCode: '-',
+            incomeCodeSc: '-',
+            incomeListKku: '-',
+            incomeListSc: '-',
+            details: '-',
+            receivingType: '-',
+            amountOfMoney: '-',
+            departmentName: '-',
+          }]);
+        } else {
           reject(err);
         }
         http.unsubscribe();
@@ -53,19 +52,18 @@ export class ReportService {
       }, err => {
         if (err.status === 401) {
           resolve([{
-            receiptDate: "-",
-            receiptNumber: "-",
-            accountCode: "-",
-            incomeCodeSc: "-",
-            incomeListKku: "-",
-            incomeListSc: "-",
-            details: "-",
-            receivingType: "-",
-            amountOfMoney: "-",
-            departmentName: "-",
-          }])
-        }
-        else {
+            receiptDate: '-',
+            receiptNumber: '-',
+            accountCode: '-',
+            incomeCodeSc: '-',
+            incomeListKku: '-',
+            incomeListSc: '-',
+            details: '-',
+            receivingType: '-',
+            amountOfMoney: '-',
+            departmentName: '-',
+          }]);
+        } else {
           reject(err);
         }
         http.unsubscribe();
@@ -74,8 +72,8 @@ export class ReportService {
   }
 
   getDailyReportData() {
-    return new Promise((resolve, reject) => {
-      const http = this.http.get(`${environment.apiDomainName}/report/1`, {
+    return new Promise<any[]>((resolve, reject) => {
+      const http = this.http.get<any[]>(`${environment.apiDomainName}/report/1`, {
         observe: 'response'
       }).subscribe(res => {
         resolve(res.body);
@@ -83,15 +81,14 @@ export class ReportService {
       }, err => {
         if (err.status === 401) {
           resolve([{
-            receiptDate: "-",
-            receiptNumber: "-",
-            incomeCodeSc: "-",
-            incomeListSc: "-",
-            amountOfMoney: "-",
-            departmentName: "-"
-          }])
-        }
-        else {
+            receiptDate: '-',
+            receiptNumber: '-',
+            incomeCodeSc: '-',
+            incomeListSc: '-',
+            amountOfMoney: '-',
+            departmentName: '-'
+          }]);
+        } else {
           reject(err);
         }
         http.unsubscribe();
@@ -100,8 +97,8 @@ export class ReportService {
   }
 
   getDailyReportDataManually(date: string) {
-    return new Promise((resolve, reject) => {
-      const http = this.http.get(`${environment.apiDomainName}/report/1/${date}`, {
+    return new Promise<any[]>((resolve, reject) => {
+      const http = this.http.get<any[]>(`${environment.apiDomainName}/report/1/${date}`, {
         observe: 'response'
       }).subscribe(res => {
         resolve(res.body);
@@ -109,15 +106,14 @@ export class ReportService {
       }, err => {
         if (err.status === 401) {
           resolve([{
-            receiptDate: "-",
-            receiptNumber: "-",
-            incomeCodeSc: "-",
-            incomeListSc: "-",
-            amountOfMoney: "-",
-            departmentName: "-"
-          }])
-        }
-        else {
+            receiptDate: '-',
+            receiptNumber: '-',
+            incomeCodeSc: '-',
+            incomeListSc: '-',
+            amountOfMoney: '-',
+            departmentName: '-'
+          }]);
+        } else {
           reject(err);
         }
         http.unsubscribe();

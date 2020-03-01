@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/services/report.service';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-daily-report',
@@ -10,40 +11,64 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 export class DailyReportComponent implements OnInit {
 
   displayedColumns = [
-    'receiptDate', 
+    'receiptDate',
     'receiptNumber',
-    'incomeCodeSc', 
+    'incomeCodeSc',
     'incomeListSc',
-    'departmentName', 
+    'departmentName',
     'amountOfMoney',
     // 'credit',
-    // 'total',
+    'total',
   ];
-  dataSource: any = []
+
+  dataSource: any[] = [];
+
+  events: string[] = [];
+
+  formControlArray: FormArray;
 
   constructor(
-    private reportService: ReportService,
+    private reportService: ReportService
   ) { }
 
   ngOnInit() {
-    this.callService()
+    this.callService();
+    this.formControlArray = new FormArray([]);
   }
 
   callService() {
     this.reportService.getDailyReportData().then(res => {
-      console.log('res is ', res)
-      this.dataSource = res
+      let total = 0;
+      for (const i of res) {
+        total += Number(i.amountOfMoney);
+        i.total = total;
+      }
+      const toGroups = res.map(row => {
+        return new FormGroup({
+          receiptDate: new FormControl(row.receiptDate),
+          receiptNumber: new FormControl(row.receiptNumber),
+          incomeCodeSc: new FormControl(row.incomeCodeSc),
+          incomeListSc: new FormControl(row.incomeListSc),
+          departmentName: new FormControl(row.departmentName),
+          amountOfMoney: new FormControl(row.amountOfMoney),
+          total: new FormControl(row.total)
+        });
+      });
+      this.formControlArray = new FormArray(toGroups);
+      this.dataSource = res;
+      console.log(this.formControlArray);
     });
   }
 
-  events: string[] = [];
-
   addEventDatePicker(event: MatDatepickerInputEvent<Date>) {
-    const date = `${event.value.getDate()}/${event.value.getMonth()+1}/${event.value.getFullYear()}`;
+    const date = `${event.value.getDate()}/${event.value.getMonth() + 1}/${event.value.getFullYear()}`;
     this.reportService.getDailyReportDataManually(date).then(res => {
-      console.log('res is ', res)
-      this.dataSource = res
+      this.dataSource = res;
     });
+  }
+
+  getControl(index: number, field: string): FormControl {
+    return this.formControlArray.at(index).get(field) as FormControl;
   }
 
 }
