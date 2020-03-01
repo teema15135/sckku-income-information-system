@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/services/report.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-daily-report',
@@ -27,6 +28,8 @@ export class DailyReportComponent implements OnInit {
 
   formControlArray: FormArray;
 
+  addRowFormGroup: FormGroup;
+
   constructor(
     private reportService: ReportService
   ) { }
@@ -34,6 +37,40 @@ export class DailyReportComponent implements OnInit {
   ngOnInit() {
     this.callService();
     this.formControlArray = new FormArray([]);
+    this.initialAddRowFormGroup();
+  }
+
+  initialAddRowFormGroup() {
+    this.addRowFormGroup = new FormGroup({
+      receiptDate: new FormControl(`${formatDate(new Date(), 'd/M/yyyy', 'en')}`, [Validators.required]),
+      receiptNumber: new FormControl('', [Validators.required]),
+      incomeCodeSc: new FormControl('', [Validators.required]),
+      incomeListSc: new FormControl('', [Validators.required]),
+      departmentName: new FormControl('', [Validators.required]),
+      amountOfMoney: new FormControl('0', [Validators.required, Validators.min(0)]),
+      credit: new FormControl('0', [Validators.required, Validators.min(0)]),
+    });
+  }
+
+  addRowHandler() {
+    const row = this.addRowFormGroup.value;
+    row.credit = (row.credit <= 0 ? '-' : row.credit);
+    row.amountOfMoney = (row.amountOfMoney <= 0 ? '-' : row.amountOfMoney);
+    row.total = 0;
+    this.dataSource = [...this.dataSource, row];
+    this.formControlArray.push(
+      new FormGroup({
+        receiptNumber: new FormControl(row.receiptNumber),
+        incomeCodeSc: new FormControl(row.incomeCodeSc),
+        incomeListSc: new FormControl(row.incomeListSc),
+        departmentName: new FormControl(row.departmentName),
+        amountOfMoney: new FormControl(row.amountOfMoney),
+        credit: new FormControl(row.credit)
+      })
+    );
+    this.calculateTotal();
+    this.initialAddRowFormGroup();
+    (document.querySelector('#receiptInputField') as HTMLInputElement).focus();
   }
 
   calculateTotal() {
@@ -56,14 +93,12 @@ export class DailyReportComponent implements OnInit {
     this.reportService.getDailyReportData().then(res => {
       const toGroups = res.map(row => {
         return new FormGroup({
-          receiptDate: new FormControl(row.receiptDate),
           receiptNumber: new FormControl(row.receiptNumber),
           incomeCodeSc: new FormControl(row.incomeCodeSc),
           incomeListSc: new FormControl(row.incomeListSc),
           departmentName: new FormControl(row.departmentName),
           amountOfMoney: new FormControl(row.amountOfMoney),
-          credit: new FormControl(row.credit),
-          total: new FormControl(row.total)
+          credit: new FormControl(row.credit)
         });
       });
       this.formControlArray = new FormArray(toGroups);
@@ -81,6 +116,7 @@ export class DailyReportComponent implements OnInit {
     this.reportService.getDailyReportDataManually(date).then(res => {
       this.dataSource = res;
     });
+    this.addRowFormGroup.get('receiptDate').setValue(date);
   }
 
   getControl(index: number, field: string): FormControl {
@@ -95,7 +131,7 @@ export class DailyReportComponent implements OnInit {
           if (control.value === '') {
             control.setValue('-');
           }
-          if ((field === 'credit' || field === 'amountOfMoney') && control.value === 0) {
+          if ((field === 'credit' || field === 'amountOfMoney') && control.value <= 0) {
             control.setValue('-');
           }
           return {

@@ -5,6 +5,7 @@
       <mat-label>เลือกวันที่</mat-label>
       <input
         matInput
+        placeholder="เดือน/วัน/ปี"
         [matDatepicker]="picker"
         (dateInput)="addEventDatePicker($event)"
         (dateChange)="addEventDatePicker($event)"
@@ -128,4 +129,18 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <form
+    class="mt-5 px-5 d-flex justify-content-center"
+    [formGroup]="addRowFormGroup"
+    (ngSubmit)="addRowHandler()"
+  >
+    <input class="mx-2 form-control" formControlName="receiptDate" disabled>
+    <input class="mx-2 form-control" formControlName="receiptNumber" placeholder="เลขที่ใบเสร็จรับเงิน" id="receiptInputField">
+    <input class="mx-2 form-control" formControlName="incomeCodeSc" placeholder="รหัสรายได้">
+    <input class="mx-2 form-control" formControlName="incomeListSc" placeholder="รายการ">
+    <input class="mx-2 form-control" formControlName="departmentName" placeholder="ชื่อหน่วยงาน">
+    <input class="mx-2 form-control" formControlName="amountOfMoney" placeholder="จำนวนเงิน" type="number">
+    <input class="mx-2 form-control" formControlName="credit" placeholder="เครดิต" type="number">
+    <button type="submit" class="btn btn-primary" [disabled]="!addRowFormGroup.valid">เพิ่ม</button>
+  </form>
 </div>

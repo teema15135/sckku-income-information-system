@@ -31,12 +31,10 @@ $sc-income-information-system-theme: mat-light-theme($sc-income-information-syst
 @import './theme/custom.scss';
 @import './theme/variable.scss';
 @import './bootstrap/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Sarabun&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Pridi:200&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Pridi|Prompt|Sarabun&display=swap');
 
-html, body {
-  font-family: 'san-serif', 'Sarabun', 'Prompt', 'Pridi', ;
+html, body, table {
+  font-family: 'Sarabun', 'san-serif', 'Prompt', 'Pridi' !important;
 }
 
 html, body { height: 100%; }
