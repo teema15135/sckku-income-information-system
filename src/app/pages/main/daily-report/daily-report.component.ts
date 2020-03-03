@@ -35,9 +35,9 @@ export class DailyReportComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.callService();
     this.formControlArray = new FormArray([]);
     this.initialAddRowFormGroup();
+    this.callService();
   }
 
   initialAddRowFormGroup() {
@@ -108,13 +108,29 @@ export class DailyReportComponent implements OnInit {
       this.dataSource = res;
       this.calculateTotal();
       this.log(this.dataSource);
+      this.log(res);
     });
   }
 
   addEventDatePicker(event: MatDatepickerInputEvent<Date>) {
     const date = `${event.value.getDate()}/${event.value.getMonth() + 1}/${event.value.getFullYear()}`;
     this.reportService.getDailyReportDataManually(date).then(res => {
+      const toGroups = res.map(row => {
+        return new FormGroup({
+          receiptNumber: new FormControl(row.receiptNumber),
+          incomeCodeSc: new FormControl(row.incomeCodeSc),
+          incomeListSc: new FormControl(row.incomeListSc),
+          departmentName: new FormControl(row.departmentName),
+          amountOfMoney: new FormControl(row.amountOfMoney),
+          credit: new FormControl(row.credit)
+        });
+      });
+      this.formControlArray = new FormArray(toGroups);
+      for (const i of res) {
+        i.credit = '-';
+      }
       this.dataSource = res;
+      this.calculateTotal();
     });
     this.addRowFormGroup.get('receiptDate').setValue(date);
   }
