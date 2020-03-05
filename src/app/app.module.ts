@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material';
 import { MatPaginatorModule, MatSortModule } from '@angular/material';
 import {DemoMaterialModule} from '../app/pages/main/summary-report/material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
