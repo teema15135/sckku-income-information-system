@@ -10,6 +10,7 @@ import { IonicModule } from '@ionic/angular';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 
 
 @NgModule({
@@ -20,7 +21,10 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
     IonicModule,
     AutocompleteLibModule,
     ReactiveFormsModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ]
 })
 export class FormModule { }

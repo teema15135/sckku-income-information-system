@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ViewModeDirective } from 'src/app/shared/editable/directive/view-mode.directive';
 import { EditModeDirective } from 'src/app/shared/editable/directive/edit-mode.directive';
 import { IonicModule } from '@ionic/angular';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { IonicModule } from '@ionic/angular';
     MatPaginatorModule,
     MatSortModule,
     DemoMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollingModule
   ],
 })
 export class MainModule { }
