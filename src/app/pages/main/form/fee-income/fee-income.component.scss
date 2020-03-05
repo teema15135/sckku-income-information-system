@@ -23,7 +23,8 @@ table {
 }
 
 div.table-container {
-  width: 130%;
+  width: 100%;
+  overflow-x: scroll;
   background: white;
 }
 
