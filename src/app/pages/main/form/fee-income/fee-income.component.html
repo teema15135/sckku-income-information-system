@@ -138,7 +138,7 @@
 
     <!--  -->
 
-    <ng-container matColumnDef="totalCol" sticky>
+    <ng-container matColumnDef="totalCol">
       <th mat-header-cell *matHeaderCellDef [attr.rowspan]="3">
         รวม
       </th>
@@ -147,7 +147,7 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="joint" sticky>
+    <ng-container matColumnDef="joint">
       <th mat-header-cell *matHeaderCellDef [attr.rowspan]="3">
         สาขาวิชา / หลักสูตร
       </th>
@@ -164,10 +164,10 @@
       <th mat-header-cell *matHeaderCellDef></th>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="['joint', 'header1', 'header2', 'totalCol']; sticky: true;"></tr>
+    <tr mat-header-row *matHeaderRowDef="['joint', 'header1', 'header2', 'totalCol'];"></tr>
     <tr
       mat-header-row
-      *matHeaderRowDef="['header11', 'header12', 'header11', 'header12']; sticky: true;"
+      *matHeaderRowDef="['header11', 'header12', 'header11', 'header12'];"
     ></tr>
     <tr
       mat-header-row
@@ -184,7 +184,7 @@
         'header221',
         'header222',
         'header223'
-      ]; sticky: true;"
+      ];"
     ></tr>
     <tr
       mat-row
