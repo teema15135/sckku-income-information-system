@@ -1,8 +1,8 @@
 ::ng-deep {
   .card {
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(168,168,168,0.5);
--moz-box-shadow: 0px 0px 5px 0px rgba(168,168,168,0.5);
-box-shadow: 0px 0px 5px 0px rgba(168,168,168,0.5);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
+    box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.5);
     max-width: 80vw !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -18,6 +18,7 @@ td {
 }
 
 thead {
+  border-bottom: 3px solid #e0e0e0 !important;
   border: 1px solid #cccccc;
   border-width: 0 0 1px 0;
 }
@@ -28,4 +29,8 @@ td.negative {
 
 .div-card {
   max-width: 80vw !important;
+}
+
+.boldText {
+  font-weight: bold;;
 }
