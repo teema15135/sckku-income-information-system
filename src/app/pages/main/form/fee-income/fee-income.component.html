@@ -33,7 +33,7 @@
         ป.ตรี
       </th>
       <td mat-cell *matCellDef="let row; let i = index" class="border-bottom">
-        <input [formControl]="getFormControl(i, 0)" type="number" placeholder="0.00" [(ngModel)]="row.values[0]" />
+        <input [formControl]="getFormControl(i, 0)" type="number" placeholder="0.00" [(ngModel)]="row.values[0]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -42,7 +42,7 @@
         ป.โท
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 1)" type="number" placeholder="0.00" [(ngModel)]="row.values[1]" />
+        <input [formControl]="getFormControl(i, 1)" type="number" placeholder="0.00" [(ngModel)]="row.values[1]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -51,7 +51,7 @@
         ป.เอก
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 2)" type="number" placeholder="0.00" [(ngModel)]="row.values[2]" />
+        <input [formControl]="getFormControl(i, 2)" type="number" placeholder="0.00" [(ngModel)]="row.values[2]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -60,7 +60,7 @@
         ป.ตรี
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 3)" type="number" placeholder="0.00" [(ngModel)]="row.values[3]" />
+        <input [formControl]="getFormControl(i, 3)" type="number" placeholder="0.00" [(ngModel)]="row.values[3]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -69,7 +69,7 @@
         ป.โท
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 4)" type="number" placeholder="0.00" [(ngModel)]="row.values[4]" />
+        <input [formControl]="getFormControl(i, 4)" type="number" placeholder="0.00" [(ngModel)]="row.values[4]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -78,7 +78,7 @@
         ป.เอก
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 5)" type="number" placeholder="0.00" [(ngModel)]="row.values[5]" />
+        <input [formControl]="getFormControl(i, 5)" type="number" placeholder="0.00" [(ngModel)]="row.values[5]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -87,7 +87,7 @@
         ป.ตรี
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 6)" type="number" placeholder="0.00" [(ngModel)]="row.values[6]" />
+        <input [formControl]="getFormControl(i, 6)" type="number" placeholder="0.00" [(ngModel)]="row.values[6]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -96,7 +96,7 @@
         ป.โท
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 7)" type="number" placeholder="0.00" [(ngModel)]="row.values[7]" />
+        <input [formControl]="getFormControl(i, 7)" type="number" placeholder="0.00" [(ngModel)]="row.values[7]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -105,7 +105,7 @@
         ป.เอก
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 8)" type="number" placeholder="0.00" [(ngModel)]="row.values[8]" />
+        <input [formControl]="getFormControl(i, 8)" type="number" placeholder="0.00" [(ngModel)]="row.values[8]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -114,7 +114,7 @@
         ป.ตรี
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 9)" type="number" placeholder="0.00" [(ngModel)]="row.values[9]" />
+        <input [formControl]="getFormControl(i, 9)" type="number" placeholder="0.00" [(ngModel)]="row.values[9]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -123,7 +123,7 @@
         ป.โท
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 10)" type="number" placeholder="0.00" [(ngModel)]="row.values[10]" />
+        <input [formControl]="getFormControl(i, 10)" type="number" placeholder="0.00" [(ngModel)]="row.values[10]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
@@ -132,13 +132,13 @@
         ป.เอก
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
-        <input [formControl]="getFormControl(i, 11)" type="number" placeholder="0.00" [(ngModel)]="row.values[11]" />
+        <input [formControl]="getFormControl(i, 11)" type="number" placeholder="0.00" [(ngModel)]="row.values[11]" [class.bg-lightgray]="isTitle(row.id)" />
       </td>
     </ng-container>
 
     <!--  -->
 
-    <ng-container matColumnDef="totalCol">
+    <ng-container matColumnDef="totalCol" sticky>
       <th mat-header-cell *matHeaderCellDef [attr.rowspan]="3">
         รวม
       </th>
@@ -188,6 +188,7 @@
     ></tr>
     <tr
       mat-row
+      [class.bg-lightgray]="isTitle(row.id)"
       *matRowDef="
         let row;
         columns: [
@@ -210,6 +211,6 @@
     ></tr>
   </table>
   <div class="m-5 d-flex flex-row justify-content-around">
-    <button class="btn btn-primary">บันทึก</button>
+    <button class="btn btn-primary" (click)="save()">บันทึก</button>
   </div>
 </div>
