@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { RecordService } from 'src/app/services/record.service';
 
 @Component({
   selector: 'app-kkufmis',
@@ -37,6 +39,8 @@ export class KkufmisComponent implements OnInit {
   ];
 
   constructor(
+    private toastr: ToastrService,
+    private recordService: RecordService
   ) { }
 
   ngOnInit() {
@@ -97,12 +101,9 @@ export class KkufmisComponent implements OnInit {
     this.firstFormArray = new FormArray([]);
     for (let i = 0; i < 20; i++) { // old version is 48
       this.firstFormModel.push(0);
-      this.firstFormArray.push(new FormControl(0));
+      this.firstFormArray.push(new FormControl(0, [Validators.required]));
     }
     this.setFormControlListener();
-    setInterval(() => {
-      console.log(this.firstFormModel);
-    }, 3000);
   }
 
   setFormControlListener() {
@@ -116,8 +117,12 @@ export class KkufmisComponent implements OnInit {
   calculate() {
     this.firstFormModel[3] = (this.firstFormModel[4] + this.firstFormModel[5]);
     this.firstFormModel[14] = (this.firstFormModel[15] + this.firstFormModel[16]);
-    this.firstFormModel[19] = (this.firstFormModel[3] + this.firstFormModel[6] + this.firstFormModel[7] + this.firstFormModel[8] + this.firstFormModel[9] + this.firstFormModel[10] + this.firstFormModel[11] + this.firstFormModel[12] + this.firstFormModel[13] + this.firstFormModel[14] + this.firstFormModel[17] + this.firstFormModel[18]);
-    // this.firstFormModel[32] = (this.firstFormModel[21] + this.firstFormModel[22] + this.firstFormModel[23] + this.firstFormModel[24] + this.firstFormModel[25] + this.firstFormModel[26] + this.firstFormModel[27] + this.firstFormModel[28] + this.firstFormModel[29] + this.firstFormModel[30] + this.firstFormModel[31]);
+    this.firstFormModel[19] = (this.firstFormModel[3] + this.firstFormModel[6] + this.firstFormModel[7] +
+      this.firstFormModel[8] + this.firstFormModel[9] + this.firstFormModel[10] + this.firstFormModel[11] +
+      this.firstFormModel[12] + this.firstFormModel[13] + this.firstFormModel[14] + this.firstFormModel[17] + this.firstFormModel[18]);
+    // this.firstFormModel[32] = (this.firstFormModel[21] + this.firstFormModel[22] +
+    //   this.firstFormModel[23] + this.firstFormModel[24] + this.firstFormModel[25] + this.firstFormModel[26] +
+    //   this.firstFormModel[27] + this.firstFormModel[28] + this.firstFormModel[29] + this.firstFormModel[30] + this.firstFormModel[31]);
     // this.firstFormModel[33] = (this.firstFormModel[19] - this.firstFormModel[32])
     // this.firstFormModel[37] = (this.firstFormModel[35] + this.firstFormModel[36])
     // this.firstFormModel[41] = (this.firstFormModel[40] + this.firstFormModel[39])
@@ -132,6 +137,21 @@ export class KkufmisComponent implements OnInit {
 
   getTotalCost() {
     return this.dataSource.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+  }
+
+  save() {
+    if (!this.firstFormArray.valid) {
+      this.toastr.warning('กรุณากรอกให้ครบทุกหมวด');
+      return;
+    }
+    this.recordService.saveKKUFMIS(this.firstFormModel).subscribe(
+      res => {
+        this.toastr.success('บันทึกรายได้ KKUFMIS สำเร็จ');
+      }, err => {
+        console.error(err);
+        this.toastr.error('เกิดปัญหาระหว่างบันทึกรายได้ KKUFMIS');
+      }
+    );
   }
 
 }

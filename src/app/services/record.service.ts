@@ -37,4 +37,59 @@ export class RecordService {
   updateFeeIncome(fee: Fee) {
     return this.http.post(`${environment.apiDomainName}/record/2`, fee);
   }
+
+  saveKKUFMIS(values: number[]) {
+    const body = [
+      {
+        sc: '410100000',
+        value: values[3]
+      }, {
+        sc: '410102000',
+        value: values[4]
+      }, {
+        sc: '410105000',
+        value: values[5]
+      }, {
+        sc: '410300000',
+        value: values[6]
+      }, {
+        sc: '410400000',
+        value: values[7]
+      }, {
+        sc: '410500000',
+        value: values[8]
+      }, {
+        sc: '410600000',
+        value: values[9]
+      }, {
+        sc: '410800000',
+        value: values[10]
+      }, {
+        sc: '411300000',
+        value: values[11]
+      }, {
+        sc: '999999912',
+        value: values[12]
+      }, {
+        sc: '411000000',
+        value: values[13]
+      }, {
+        sc: '999999914',
+        value: values[14]
+      }, {
+        sc: '999999915',
+        value: values[15]
+      }, {
+        sc: '999999916',
+        value: values[16]
+      }, {
+        sc: '999999917',
+        value: values[17]
+      }, {
+        sc: '411200000',
+        value: values[18]
+      }
+    ];
+    return this.http.post(`${environment.apiDomainName}/record/3`, body);
+  }
 }
