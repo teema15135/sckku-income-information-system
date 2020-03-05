@@ -7,6 +7,11 @@ td {
   padding-bottom: 0.25rem;
 }
 
+th.mat-header-cell {
+  font-size: 1rem;
+  font-weight: bolder;
+}
+
 th.mat-header-cell, td.mat-cell {
   text-align: center;
 }
@@ -18,11 +23,11 @@ table {
 }
 
 div.table-container {
-  width: 100%;
+  width: 130%;
   background: white;
 }
 
-.mat-header-cell.mat-column-joint {
+.mat-header-cell.mat-column-joint, .mat-header-cell.mat-column-totalCol {
   width: 15rem;
 }
 
@@ -41,6 +46,7 @@ div.table-container {
 
 th.mat-header-cell {
   padding: 0 !important;
+  border-left: 1px solid var(--gray-3);
   border-right: 1px solid var(--gray-3);
   border-bottom: 1px solid var(--gray-3);
 }
@@ -53,7 +59,7 @@ th.mat-header-cell {
 }
 
 input {
-  max-width: 7rem;
+  max-width: 100%;
   text-align: right;
   &:focus {
     border: none;
