@@ -167,13 +167,33 @@
               </td>
             </tr>
             <tr>
+              <td class="w-25 py-2 label-table text-gray-0">รหัสรายได้ - SC</td>
+              <td class="w-25 py-2 input-table">
+                <ng-autocomplete
+                  [data]="scNumberData"
+                  [searchKeyword]="scKeyword"
+                  (selected)="onSelectSCNumber($event)"
+                  [itemTemplate]="itemTemplate"
+                  placeHolder="ค้นหารหัสรายได้"
+                >
+                </ng-autocomplete>
+                <ng-template #itemTemplate let-item>
+                  <div class="item">
+                    <span [innerHTML]="item.sc"></span>
+                  </div>
+                </ng-template>
+              </td>
+              <td class="w-25 py-2 label-table text-gray-0"></td>
+              <td class="w-25 py-2 input-table"></td>
+            </tr>
+            <tr>
               <td class="w-25 py-2 label-table text-gray-0">รหัสบัญชี</td>
               <td class="w-25 py-2 input-table">
                 <input
                   formControlName="accountCode"
                   type="text"
                   class="form-control"
-                  placeholder="XXX-XX-XX"
+                  placeholder=""
                   disabled
                 />
               </td>
@@ -205,26 +225,7 @@
                 <p class="d-inline">บาท</p>
               </td>
             </tr>
-            <tr>
-              <td class="w-25 py-2 label-table text-gray-0">รหัสรายได้ - SC</td>
-              <td class="w-25 py-2 input-table">
-                <ng-autocomplete
-                  [data]="scNumberData"
-                  [searchKeyword]="scKeyword"
-                  (selected)="onSelectSCNumber($event)"
-                  [itemTemplate]="itemTemplate"
-                  placeHolder="ค้นหารหัสรายได้"
-                >
-                </ng-autocomplete>
-                <ng-template #itemTemplate let-item>
-                  <div class="item">
-                    <span [innerHTML]="item.sc"></span>
-                  </div>
-                </ng-template>
-              </td>
-              <td class="w-25 py-2 label-table text-gray-0"></td>
-              <td class="w-25 py-2 input-table"></td>
-            </tr>
+
             <tr>
               <td class="w-25 py-2 label-table text-gray-0">
                 รายการรายได้ - SC
@@ -254,7 +255,7 @@
           </tbody>
         </table>
       </form>
-      <div class="d-flex justify-content-center mx-auto my-4 w-25">
+      <div class="d-flex justify-content-center mx-auto my-2 w-25">
         <button
           [disabled]="!this.fg.valid"
           class="btn btn-primary mx-3"

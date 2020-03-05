@@ -17,9 +17,8 @@ th.mat-header-cell, td.mat-cell {
 }
 
 table {
-  width: 100%;
-  padding: 5rem;
-  border: 1px solid var(--gray-3);
+  width: 200%;
+  border-top: 3px solid #e0e0e0;
 }
 
 div.table-container {
@@ -40,10 +39,6 @@ div.table-container {
   }
 }
 
-.mat-column-totalCol {
-  padding: 0 !important;
-}
-
 .mat-column-empty {
   border-top: none;
   border-bottom: none;
@@ -51,24 +46,57 @@ div.table-container {
 
 th.mat-header-cell {
   padding: 0 !important;
-  border-left: 1px solid var(--gray-3);
-  border-right: 1px solid var(--gray-3);
-  border-bottom: 1px solid var(--gray-3);
+  border-left: 3px solid #e0e0e0;
+  border-right: 3px solid #e0e0e0;
+  border-bottom: 3px solid #e0e0e0;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .mat-cell {
+  font-size: 16px;
   padding-top: 0;
   padding-bottom: 0;
-  border-right: 1px solid var(--gray-3);
-  border-bottom: 1px solid var(--gray-5);
+  // border-right: 1px solid var(--gray-3);
+  // border-bottom: 1px solid var(--gray-5);
 }
 
 input {
-  max-width: 100%;
+  // background-color: white;
+  // max-width: 100%;
   text-align: right;
   &:focus {
     border: none;
   }
+  min-height: 40px;
   border: none;
-  min-height: 48px;
+  // min-height: 48px;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+.borderRight {
+  border-right: 3px solid #e0e0e0 !important;
+}
+
+.subBorderRight {
+  border-right: 3px solid #e0e0e0 !important;
+}
+
+.leftBg {
+  background-color: #FEF9E7;
+}
+
+.rightBg {
+  background-color: #FDF2E9;
+}
+
+.btn {
+  width: 15% !important;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12) !important;
 }
