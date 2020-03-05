@@ -29,6 +29,14 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+    this.loggingIn = true;
+    this.auth.relogin().then(success => {
+      if (success) {
+        alert('Login success');
+        this.router.navigate(['/main']);
+      }
+    }).catch(err => console.error(err))
+    .finally(() => this.loggingIn = false);
   }
 
   login() {
