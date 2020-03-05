@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { RecordService } from 'src/app/services/record.service';
 import { Fee, Item } from 'src/app/models/fee.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fee-income',
@@ -17,7 +18,8 @@ export class FeeIncomeComponent implements OnInit {
   saving = false;
 
   constructor(
-    private recordService: RecordService
+    private recordService: RecordService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -263,13 +265,13 @@ export class FeeIncomeComponent implements OnInit {
 
   save() {
     if (this.saving) {
-      alert('กำลังบันทึก กรุณารอสักครู่');
+      this.toastr.info('กำลังบันทึก กรุณารอสักครู่');
       return;
     }
     this.saving = true;
     this.recordService.updateFeeIncome({ fees: this.formModel }).subscribe(
       res => {
-        alert('บันทึกสำเร็จ');
+        this.toastr.success('บันทึกสำเร็จ');
       }, err => {
         console.error(err);
       }, () => {

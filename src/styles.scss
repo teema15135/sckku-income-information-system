@@ -28,6 +28,8 @@ $sc-income-information-system-theme: mat-light-theme($sc-income-information-syst
 
 /* You can add global styles to this file, and also import other style files */
 
+@import '~ngx-toastr/toastr';
+
 @import './theme/custom.scss';
 @import './theme/variable.scss';
 @import './bootstrap/bootstrap.min.css';

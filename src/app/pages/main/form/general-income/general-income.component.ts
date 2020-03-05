@@ -3,6 +3,7 @@ import { SC_MAP } from '../../../../shared/sc-number-map';
 import { SCNumber } from 'src/app/models/scMap.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RecordService } from 'src/app/services/record.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-general-income',
@@ -18,7 +19,8 @@ export class GeneralIncomeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private recordService: RecordService
+    private recordService: RecordService,
+    private toastr: ToastrService
   ) { }
 
   fg: FormGroup;
@@ -73,13 +75,13 @@ export class GeneralIncomeComponent implements OnInit {
     console.log(this.fg.value);
     if (this.fg.value.receivingType === 'check') {
       if (this.fg.value.checkNumber === '' || this.fg.value.checkDate === '') {
-        alert('Please fill Check number and Check date');
+        this.toastr.warning('กรุณากรอก หมายเลขเช็ค และวันที่เช็คให้ครบถ้วน');
         return;
       }
     }
     this.recordService.saveIncomeRecord(this.fg.value).then(res => {
       console.log(res);
-      alert('บันทึกสำเร็จ');
+      this.toastr.success('บันทึกสำเร็จ');
       this.isSending = false;
       this.clearForm();
     });

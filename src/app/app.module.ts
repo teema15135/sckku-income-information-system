@@ -16,6 +16,7 @@ import {DemoMaterialModule} from '../app/pages/main/summary-report/material-modu
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE } from '@angular/material';
+import { ToastrModule } from 'ngx-toastr';
 import { EditableComponent } from './shared/editable/editable.component';
 
 @NgModule({
@@ -35,7 +36,8 @@ import { EditableComponent } from './shared/editable/editable.component';
     MatPaginatorModule,
     MatSortModule,
     DemoMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
