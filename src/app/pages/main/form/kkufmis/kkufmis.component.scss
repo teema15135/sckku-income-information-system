@@ -25,6 +25,7 @@ table {
   border-bottom: 3px solid #e0e0e0;
   font-weight: bold;
   font-size: 16px;
+  background-color: var(--gray-7);
 }
 
 .mat-form-field {
@@ -48,19 +49,32 @@ tr.mat-footer-row {
   font-style: italic;
 }
 
+
 .pl-4 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .pl-5 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .pl-6 {
-    padding-left: 70px !important;
+  padding-left: 80px !important;
 }
 
 .pl-7 {
-    padding-left: 90px !important;
-    color: var(--gray-3);
+  padding-left: 100px !important;
+}
+
+.pl-8 {
+    padding-left: 80px !important;
+    font-weight: bold;
+  }
+
+.boldText {
+    font-weight: bold;
+}
+
+.lastCell {
+    border-bottom: 3px solid #e0e0e0;
 }
