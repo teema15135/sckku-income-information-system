@@ -5,5 +5,59 @@ div.grow {
 td {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  border: 1px solid var(--gray-2)
+}
+
+th.mat-header-cell, td.mat-cell {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  padding: 5rem;
+  border: 1px solid var(--gray-3);
+}
+
+div.table-container {
+  width: 100%;
+  background: white;
+}
+
+.mat-header-cell.mat-column-joint {
+  width: 15rem;
+}
+
+.mat-cell.mat-column-joint {
+  text-align: left !important;
+  padding-left: .5rem;
+  &.indent {
+    padding-left: 1rem;
+  }
+}
+
+.mat-column-empty {
+  border-top: none;
+  border-bottom: none;
+}
+
+th.mat-header-cell {
+  padding: 0 !important;
+  border-right: 1px solid var(--gray-3);
+  border-bottom: 1px solid var(--gray-3);
+}
+
+.mat-cell {
+  padding-top: 0;
+  padding-bottom: 0;
+  border-right: 1px solid var(--gray-3);
+  border-bottom: 1px solid var(--gray-5);
+}
+
+input {
+  max-width: 7rem;
+  text-align: right;
+  &:focus {
+    border: none;
+  }
+  border: none;
+  min-height: 48px;
 }
