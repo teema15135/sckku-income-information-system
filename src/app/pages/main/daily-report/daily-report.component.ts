@@ -30,6 +30,8 @@ export class DailyReportComponent implements OnInit {
 
   addRowFormGroup: FormGroup;
 
+  dateSelected: string;
+
   constructor(
     private reportService: ReportService
   ) { }
@@ -42,7 +44,8 @@ export class DailyReportComponent implements OnInit {
 
   initialAddRowFormGroup() {
     this.addRowFormGroup = new FormGroup({
-      receiptDate: new FormControl(`${formatDate(new Date(), 'd/M/yyyy', 'en')}`, [Validators.required]),
+      receiptDate: new FormControl(`${(this.dateSelected ? this.dateSelected : formatDate(new Date(), 'd/M/yyyy', 'en'))}`
+        , [Validators.required]),
       receiptNumber: new FormControl('', [Validators.required]),
       incomeCodeSc: new FormControl('', [Validators.required]),
       incomeListSc: new FormControl('', [Validators.required]),
@@ -114,6 +117,7 @@ export class DailyReportComponent implements OnInit {
 
   addEventDatePicker(event: MatDatepickerInputEvent<Date>) {
     const date = `${event.value.getDate()}/${event.value.getMonth() + 1}/${event.value.getFullYear()}`;
+    this.dateSelected = date;
     this.reportService.getDailyReportDataManually(date).then(res => {
       const toGroups = res.map(row => {
         return new FormGroup({
