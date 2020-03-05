@@ -11,16 +11,16 @@ export class SummaryReportComponent implements OnInit {
 
   //ใบเสร็จเล่มที่, รหัสหน่วยงาน
   displayedColumns = [
-    'receiptDate', 
-    'receiptNumber', 
-    'accountCode', 
-    'incomeCodeSc', 
-    'incomeListKku', 
-    'incomeListSc', 
-    'details', 
-    'receivingType', 
-    'amountOfMoney', 
-    'departmentName', 
+    'receiptDate',
+    'receiptNumber',
+    'accountCode',
+    'incomeCodeSc',
+    'incomeListKku',
+    'incomeListSc',
+    'details',
+    'receivingType',
+    'amountOfMoney',
+    'departmentName',
   ];
   dataSource: any = []
 
@@ -37,11 +37,6 @@ export class SummaryReportComponent implements OnInit {
       console.log('res is ', res)
       this.dataSource = res
     });
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   callServiceFinding(event : Event) {
