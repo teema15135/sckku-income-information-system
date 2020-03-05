@@ -14,6 +14,8 @@ export class FeeIncomeComponent implements OnInit {
 
   formArray: FormArray[];
 
+  saving = false;
+
   constructor(
     private recordService: RecordService
   ) { }
@@ -260,7 +262,20 @@ export class FeeIncomeComponent implements OnInit {
   }
 
   save() {
-    this.recordService.updateFeeIncome({ fees: this.formModel });
+    if (this.saving) {
+      alert('กำลังบันทึก กรุณารอสักครู่');
+      return;
+    }
+    this.saving = true;
+    this.recordService.updateFeeIncome({ fees: this.formModel }).subscribe(
+      res => {
+        alert('บันทึกสำเร็จ');
+      }, err => {
+        console.error(err);
+      }, () => {
+        this.saving = false;
+      }
+    );
   }
 
 }
