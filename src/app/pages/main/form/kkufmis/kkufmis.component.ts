@@ -62,40 +62,40 @@ export class KkufmisComponent implements OnInit {
       { item: '12. รายได้อื่น ๆ', cost: 0.00, depth: 2 },
       { item: 'รวมรายได้ที่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isTotal: true, isBorder: true },
 
-      { item: 'ค่าใช้จ่าย', depth: 0, noInput: true },
-      { item: 'ค่าใช้จ่ายในการดำเนินงาน', depth: 1, noInput: true },
-      { item: '1. ค่าใช้จ่ายบุคลากร', depth: 2 },
-      { item: '2. ค่าใช้จ่ายด้านการฝึกอบรม', cost: 0.00, depth: 2 },
-      { item: '3. ค่าใช้จ่ายในการเดินทาง', cost: 0.00, depth: 2 },
-      { item: '4. ค่าตอบแทน ใช้สอย และวัสดุ ', cost: 0.00, depth: 2 },
-      { item: '5. ค่าสาธารณูปโภค', cost: 0.00, depth: 2 },
-      { item: '6. ค่าเสื่อมราคา และค่าตัดจำหน่าย', cost: 0.00, depth: 2 },
-      { item: '7. ค่าใช้จ่ายเงินอุดหนุน', cost: 0.00, depth: 2 },
-      { item: '8. ค่าใช้จ่ายโอนเข้ากองทุน', cost: 0.00, depth: 2 },
-      { item: '9. ค่าใช้จ่ายระหว่างหน่วยงาน', cost: 0.00, depth: 2 },
-      { item: '10. ค่าใช้จ่ายโอนรายรับจริง 5 % เข้าทุนสำรองสะสม', cost: 0.00, depth: 2 },
-      { item: 'รวมรายได้ที่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isTotal: true },
-      { item: 'รายได้สูง(ต่ำ) กว่าค่าใช้จ่ายในการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isBorder: true },
+      // { item: 'ค่าใช้จ่าย', depth: 0, noInput: true },
+      // { item: 'ค่าใช้จ่ายในการดำเนินงาน', depth: 1, noInput: true },
+      // { item: '1. ค่าใช้จ่ายบุคลากร', depth: 2 },
+      // { item: '2. ค่าใช้จ่ายด้านการฝึกอบรม', cost: 0.00, depth: 2 },
+      // { item: '3. ค่าใช้จ่ายในการเดินทาง', cost: 0.00, depth: 2 },
+      // { item: '4. ค่าตอบแทน ใช้สอย และวัสดุ ', cost: 0.00, depth: 2 },
+      // { item: '5. ค่าสาธารณูปโภค', cost: 0.00, depth: 2 },
+      // { item: '6. ค่าเสื่อมราคา และค่าตัดจำหน่าย', cost: 0.00, depth: 2 },
+      // { item: '7. ค่าใช้จ่ายเงินอุดหนุน', cost: 0.00, depth: 2 },
+      // { item: '8. ค่าใช้จ่ายโอนเข้ากองทุน', cost: 0.00, depth: 2 },
+      // { item: '9. ค่าใช้จ่ายระหว่างหน่วยงาน', cost: 0.00, depth: 2 },
+      // { item: '10. ค่าใช้จ่ายโอนรายรับจริง 5 % เข้าทุนสำรองสะสม', cost: 0.00, depth: 2 },
+      // { item: 'รวมรายได้ที่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isTotal: true },
+      // { item: 'รายได้สูง(ต่ำ) กว่าค่าใช้จ่ายในการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isBorder: true },
 
-      { item: 'รายได้ที่ไม่เกิดจากการดำเนินงาน', depth: 1, noInput: true },
-      { item: '1. รายได้ค่าปรับและเงินชดใช้ค่าเสียหาย', depth: 2 },
-      { item: '2. เงินเหลือจ่าย', cost: 0.00, depth: 2 },
-      { item: 'รวมรายได้ที่ไม่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isTotal: true, isBorder: true },
+      // { item: 'รายได้ที่ไม่เกิดจากการดำเนินงาน', depth: 1, noInput: true },
+      // { item: '1. รายได้ค่าปรับและเงินชดใช้ค่าเสียหาย', depth: 2 },
+      // { item: '2. เงินเหลือจ่าย', cost: 0.00, depth: 2 },
+      // { item: 'รวมรายได้ที่ไม่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isTotal: true, isBorder: true },
 
-      { item: 'ค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', depth: 1, noInput: true },
-      { item: '1. ค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', depth: 2 },
-      { item: '2. เงินเหลือจ่าย', cost: 0.00, depth: 2 },
-      { item: 'รวมค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isTotal: true },
-      { item: 'รายได้สูง(ต่ำ) กว่าค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isBorder: true },
+      // { item: 'ค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', depth: 1, noInput: true },
+      // { item: '1. ค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', depth: 2 },
+      // { item: '2. เงินเหลือจ่าย', cost: 0.00, depth: 2 },
+      // { item: 'รวมค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isTotal: true },
+      // { item: 'รายได้สูง(ต่ำ) กว่าค่าใช้จ่ายที่ไม่เกิดจากการดำเนินงาน', cost: 0.00, depth: 4, noInput: true, isBorder: true },
 
-      { item: 'รายการโอน', depth: 1, noInput: true },
-      { item: '1. โอนไปเงินสำรองกันเบิกเหลื่อมปี', depth: 2 },
-      { item: '2. โอนไปกองทุน', cost: 0.00, depth: 2 },
-      { item: 'รวมรายการโอน', cost: 0.00, depth: 4, noInput: true, isTotal: true },
-      { item: 'รายได้สูง(ต่ำ) กว่าค่าใช้จ่าย สุทธิ', cost: 0.00, depth: 4, noInput: true, isBorder: true },
+      // { item: 'รายการโอน', depth: 1, noInput: true },
+      // { item: '1. โอนไปเงินสำรองกันเบิกเหลื่อมปี', depth: 2 },
+      // { item: '2. โอนไปกองทุน', cost: 0.00, depth: 2 },
+      // { item: 'รวมรายการโอน', cost: 0.00, depth: 4, noInput: true, isTotal: true },
+      // { item: 'รายได้สูง(ต่ำ) กว่าค่าใช้จ่าย สุทธิ', cost: 0.00, depth: 4, noInput: true, isBorder: true },
     ];
     this.firstFormArray = new FormArray([]);
-    for (let i = 0; i < 48; i++) {
+    for (let i = 0; i < 20; i++) { // old version is 48
       this.firstFormModel.push(0);
       this.firstFormArray.push(new FormControl(0));
     }
@@ -117,13 +117,13 @@ export class KkufmisComponent implements OnInit {
     this.firstFormModel[3] = (this.firstFormModel[4] + this.firstFormModel[5]);
     this.firstFormModel[14] = (this.firstFormModel[15] + this.firstFormModel[16]);
     this.firstFormModel[19] = (this.firstFormModel[3] + this.firstFormModel[6] + this.firstFormModel[7] + this.firstFormModel[8] + this.firstFormModel[9] + this.firstFormModel[10] + this.firstFormModel[11] + this.firstFormModel[12] + this.firstFormModel[13] + this.firstFormModel[14] + this.firstFormModel[17] + this.firstFormModel[18]);
-    this.firstFormModel[32] = (this.firstFormModel[21] + this.firstFormModel[22] + this.firstFormModel[23] + this.firstFormModel[24] + this.firstFormModel[25] + this.firstFormModel[26] + this.firstFormModel[27] + this.firstFormModel[28] + this.firstFormModel[29] + this.firstFormModel[30] + this.firstFormModel[31]);
-    this.firstFormModel[33] = (this.firstFormModel[19] - this.firstFormModel[32])
-    this.firstFormModel[37] = (this.firstFormModel[35] + this.firstFormModel[36])
-    this.firstFormModel[41] = (this.firstFormModel[40] + this.firstFormModel[39])
-    this.firstFormModel[42] = (this.firstFormModel[33] + this.firstFormModel[37]) - this.firstFormModel[41]
-    this.firstFormModel[46] = (this.firstFormModel[44] + this.firstFormModel[45])
-    this.firstFormModel[47] = (this.firstFormModel[42] + this.firstFormModel[46])
+    // this.firstFormModel[32] = (this.firstFormModel[21] + this.firstFormModel[22] + this.firstFormModel[23] + this.firstFormModel[24] + this.firstFormModel[25] + this.firstFormModel[26] + this.firstFormModel[27] + this.firstFormModel[28] + this.firstFormModel[29] + this.firstFormModel[30] + this.firstFormModel[31]);
+    // this.firstFormModel[33] = (this.firstFormModel[19] - this.firstFormModel[32])
+    // this.firstFormModel[37] = (this.firstFormModel[35] + this.firstFormModel[36])
+    // this.firstFormModel[41] = (this.firstFormModel[40] + this.firstFormModel[39])
+    // this.firstFormModel[42] = (this.firstFormModel[33] + this.firstFormModel[37]) - this.firstFormModel[41]
+    // this.firstFormModel[46] = (this.firstFormModel[44] + this.firstFormModel[45])
+    // this.firstFormModel[47] = (this.firstFormModel[42] + this.firstFormModel[46])
   }
 
   getFirstFormControl(index: number) {
@@ -135,5 +135,3 @@ export class KkufmisComponent implements OnInit {
   }
 
 }
-
-// 22-31
