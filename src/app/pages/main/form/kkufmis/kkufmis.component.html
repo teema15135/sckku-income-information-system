@@ -12,7 +12,7 @@
         [class.pl-7]="dataSource.depth === 3"
         [class.pl-8]="dataSource.depth === 4"
       >
-        {{ dataSource.item }} {{ i }}
+        {{ dataSource.item }}
       </td>
     </ng-container>
 
@@ -45,8 +45,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <div class="d-flex flex-column align-content-center justify-content-center">
-    <button class="btn btn-primary btn-lg" (click)="save()">บันทึก KKUFMIS</button>
+  <div class="d-flex flex-row justify-content-around">
+    <button class="btn btn-primary" (click)="save()">บันทึก KKUFMIS</button>
   </div>
 
   <!-- <table mat-table [dataSource]="dataSourceSecond">
