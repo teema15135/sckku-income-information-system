@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiDomainName: 'https://protected-shelf-83050.herokuapp.com'
+  // apiDomainName: 'http://localhost:3000'
 };
 
 /*

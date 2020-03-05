@@ -9,33 +9,13 @@
       <th class="pl-3 pr-4 py-4">ผลต่าง</th>
     </thead>
     <tbody>
-      <tr>
-        <td class="pl-5 pr-4 py-3">23 สิงหาคม พ.ศ. 2541</td>
-        <td class="pl-5 pr-4 py-3">รายได้</td>
-        <td class="pl-3 pr-4 py-3">1. รายได้จากการจัดการศึกษา</td>
-        <td class="pl-3 pr-4 py-3 bg-primary-light">142,115,855.00</td>
-        <td class="pl-3 pr-4 py-3">142,115,855.00</td>
-        <td class="pl-3 pr-4 py-3">0.00</td>
-        <!--
-
-            <td>1.2 ค่าธรรมเนียมการศึกษาอื่น ๆ</td> -->
-
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td class="pl-3 pr-4 py-3">&nbsp;&nbsp;&nbsp;&nbsp;1.1 ค่าธรรมเนียมการศึกษาและค่าหน่วยกิจ</td>
-        <td class="pl-3 pr-4 py-3 bg-primary-light">23.00</td>
-        <td class="pl-3 pr-4 py-3">23.00</td>
-        <td class="pl-3 pr-4 py-3">0.00</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td class="pl-3 pr-4 py-3">&nbsp;&nbsp;&nbsp;&nbsp;1.2 ค่าธรรมเนียมการศึกษาอื่น ๆ</td>
-        <td class="pl-3 pr-4 py-3 bg-primary-light">55.00</td>
-        <td class="pl-3 pr-4 py-3">60.00</td>
-        <td class="pl-3 pr-4 py-3 negative">-5.00</td>
+      <tr *ngFor="let item of tableSource">
+        <td class="pl-5 pr-4 py-3">{{ item.date }}</td>
+        <td class="pl-5 pr-4 py-3">{{ item.type }}</td>
+        <td class="pl-3 pr-4 py-3" [class.pl-5]="item.indent === 1">{{ item.name }}</td>
+        <td class="pl-3 pr-4 py-3 bg-primary-light">{{ item.kkufmis }}</td>
+        <td class="pl-3 pr-4 py-3">{{ item.sc }}</td>
+        <td class="pl-3 pr-4 py-3" [class.negative]="item.different < 0">{{ item.different }}</td>
       </tr>
     </tbody>
   </table>
