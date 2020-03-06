@@ -9,5 +9,5 @@ export class SummaryReport {
     details: string;
     receivingType: string;
     amountOfMoney: number;
-    departmentName: string;
+    branchName: string;
 }

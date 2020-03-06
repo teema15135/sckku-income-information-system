@@ -20,7 +20,7 @@ export class SummaryReportComponent implements OnInit {
     'details',
     'receivingType',
     'amountOfMoney',
-    'departmentName',
+    'branchName',
   ];
   dataSource: any = []
 

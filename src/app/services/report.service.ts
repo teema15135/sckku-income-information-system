@@ -32,7 +32,7 @@ export class ReportService {
             details: '-',
             receivingType: '-',
             amountOfMoney: '-',
-            departmentName: '-',
+            branchName: '-',
           }]);
         } else {
           reject(err);
@@ -61,7 +61,7 @@ export class ReportService {
             details: '-',
             receivingType: '-',
             amountOfMoney: '-',
-            departmentName: '-',
+            branchName: '-',
           }]);
         } else {
           reject(err);
