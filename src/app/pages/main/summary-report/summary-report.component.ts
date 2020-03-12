@@ -26,6 +26,8 @@ export class SummaryReportComponent implements OnInit {
 
   poolData: PeriodicElement[] = [];
 
+  filterValue = 'all';
+
   constructor(
     private reportService: ReportService
   ) { }
