@@ -9,7 +9,7 @@ import { ReportService } from 'src/app/services/report.service';
 })
 export class SummaryReportComponent implements OnInit {
 
-  //ใบเสร็จเล่มที่, รหัสหน่วยงาน
+  // ใบเสร็จเล่มที่, รหัสหน่วยงาน
   displayedColumns = [
     'receiptDate',
     'receiptNumber',
@@ -22,38 +22,55 @@ export class SummaryReportComponent implements OnInit {
     'amountOfMoney',
     'branchName',
   ];
-  dataSource: any = []
+  dataSource: PeriodicElement[] | { filter } = [];
+
+  poolData: PeriodicElement[] = [];
 
   constructor(
     private reportService: ReportService
   ) { }
 
   ngOnInit() {
-    this.callService()
+    this.callService();
   }
 
   callService() {
-    this.reportService.getSummaryReportData().then(res => {
-      console.log('res is ', res)
-      this.dataSource = res
+    this.reportService.getSummaryReportData().then((res: PeriodicElement[]) => {
+      console.log('res is ', res);
+      this.dataSource = res;
+      this.poolData = res;
     });
   }
 
-  callServiceFinding(event : Event) {
-    console.log('clicked')
+  callServiceFinding(event: Event) {
+    console.log('clicked');
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    const incomeCodeSc = this.dataSource.filter
-    this.reportService.getSummaryReportFinding(incomeCodeSc).then(res => {
-      console.log('res is ', res)
-      this.dataSource = res
+    const incomeCodeSc = this.dataSource.filter;
+    this.reportService.getSummaryReportFinding(incomeCodeSc).then((res: PeriodicElement[]) => {
+      console.log('res is ', res);
+      this.dataSource = res;
     });
+  }
+
+  changeBranchFilter(event: { source, value: string}) {
+    if (event.value === 'all') {
+      this.dataSource = this.poolData;
+    } else {
+      const tmp = [];
+      for (const row of this.poolData) {
+        if (row.branchName === event.value) {
+          tmp.push(row);
+        }
+      }
+      this.dataSource = tmp;
+    }
   }
 
 }
 
 export interface PeriodicElement {
-  _id: string
+  _id: string;
   receiptDate: string;
   receiptNumber: string;
   accountCode: string;
@@ -63,5 +80,6 @@ export interface PeriodicElement {
   details: string;
   receivingType: string;
   amountOfMoney: number;
-  departmentName: string;
+  branchName: string;
+  filter?;
 }
