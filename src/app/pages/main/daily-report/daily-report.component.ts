@@ -16,7 +16,7 @@ export class DailyReportComponent implements OnInit {
     'receiptNumber',
     'incomeCodeSc',
     'incomeListSc',
-    'departmentName',
+    'branchName',
     'amountOfMoney',
     'credit',
     'total',
@@ -49,7 +49,7 @@ export class DailyReportComponent implements OnInit {
       receiptNumber: new FormControl('', [Validators.required]),
       incomeCodeSc: new FormControl('', [Validators.required]),
       incomeListSc: new FormControl('', [Validators.required]),
-      departmentName: new FormControl('', [Validators.required]),
+      branchName: new FormControl('', [Validators.required]),
       amountOfMoney: new FormControl('0', [Validators.required, Validators.min(0)]),
       credit: new FormControl('0', [Validators.required, Validators.min(0)]),
     });
@@ -66,7 +66,7 @@ export class DailyReportComponent implements OnInit {
         receiptNumber: new FormControl(row.receiptNumber),
         incomeCodeSc: new FormControl(row.incomeCodeSc),
         incomeListSc: new FormControl(row.incomeListSc),
-        departmentName: new FormControl(row.departmentName),
+        branchName: new FormControl(row.branchName),
         amountOfMoney: new FormControl(row.amountOfMoney),
         credit: new FormControl(row.credit)
       })
@@ -99,7 +99,7 @@ export class DailyReportComponent implements OnInit {
           receiptNumber: new FormControl(row.receiptNumber),
           incomeCodeSc: new FormControl(row.incomeCodeSc),
           incomeListSc: new FormControl(row.incomeListSc),
-          departmentName: new FormControl(row.departmentName),
+          branchName: new FormControl(row.branchName),
           amountOfMoney: new FormControl(row.amountOfMoney),
           credit: new FormControl(row.credit)
         });
@@ -124,7 +124,7 @@ export class DailyReportComponent implements OnInit {
           receiptNumber: new FormControl(row.receiptNumber),
           incomeCodeSc: new FormControl(row.incomeCodeSc),
           incomeListSc: new FormControl(row.incomeListSc),
-          departmentName: new FormControl(row.departmentName),
+          branchName: new FormControl(row.branchName),
           amountOfMoney: new FormControl(row.amountOfMoney),
           credit: new FormControl(row.credit)
         });

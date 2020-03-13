@@ -5,5 +5,5 @@ export class DailyReport {
     incomeCodeSc: string;
     incomeListSc: string;
     amountOfMoney: number;
-    departmentName: string;
+    branchName: string;
 }

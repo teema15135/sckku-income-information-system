@@ -86,7 +86,7 @@ export class ReportService {
             incomeCodeSc: '-',
             incomeListSc: '-',
             amountOfMoney: '-',
-            departmentName: '-'
+            branchName: '-'
           }]);
         } else {
           reject(err);
@@ -111,7 +111,7 @@ export class ReportService {
             incomeCodeSc: '-',
             incomeListSc: '-',
             amountOfMoney: '-',
-            departmentName: '-'
+            branchName: '-'
           }]);
         } else {
           reject(err);
