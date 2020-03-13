@@ -85,7 +85,7 @@
       </th>
       <td mat-cell *matCellDef="let element; let i=index;">
         <editable (update)="updateField(i, 'amountOfMoney')">
-          <ng-template viewMode>{{ element.amountOfMoney }}</ng-template>
+          <ng-template viewMode>{{ element.amountOfMoney | currency: " " }}</ng-template>
           <ng-template editMode>
             <input [formControl]="getControl(i, 'amountOfMoney')" type="number" min="0">
           </ng-template>
@@ -111,7 +111,7 @@
       <th mat-header-cell *matHeaderCellDef class="headerStyle">
         ยอดคงเหลือ
       </th>
-      <td mat-cell *matCellDef="let element; let i=index;">{{ element.total }}</td>
+      <td mat-cell *matCellDef="let element; let i=index;">{{ element.total | currency: " " }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

@@ -13,9 +13,9 @@
         <!-- <td class="pl-5 pr-4 py-3">{{ item.date }}</td> -->
         <td class="pl-5 pr-4 py-3">{{ item.type }}</td>
         <td class="pl-3 pr-4 py-3" [class.pl-5]="item.indent === 1">{{ item.name }}</td>
-        <td class="pl-3 pr-4 py-3">{{ item.kkufmis }}</td>
-        <td class="pl-3 pr-4 py-3">{{ item.sc }}</td>
-        <td class="pl-3 pr-4 py-3 boldText" [class.negative]="item.different < 0">{{ item.different }}</td>
+        <td class="pl-3 pr-4 py-3">{{ item.kkufmis | currency: " " }}</td>
+        <td class="pl-3 pr-4 py-3">{{ item.sc | currency: " " }}</td>
+        <td class="pl-3 pr-4 py-3 boldText" [class.negative]="item.different < 0">{{ item.different | currency: " " }}</td>
       </tr>
     </tbody>
   </table>
