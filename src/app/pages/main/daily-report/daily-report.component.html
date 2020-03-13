@@ -139,4 +139,8 @@
     <button type="submit" class="btn btn-primary" [disabled]="!addRowFormGroup.valid"
       style="flex-basis: 5rem; flex-shrink: 0; flex-grow: 1;">เพิ่ม</button>
   </form>
+
+  <div class="downloadContainer">
+    <button mat-button class="downloadText" (click)="exportAsXLSX()">Download Excel</button>
+  </div>
 </div>

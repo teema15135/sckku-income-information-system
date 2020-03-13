@@ -3,6 +3,7 @@ import { ReportService } from 'src/app/services/report.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-daily-report',
@@ -24,6 +25,8 @@ export class DailyReportComponent implements OnInit {
 
   dataSource: any[] = [];
 
+  excelData: any[] = [];
+
   events: string[] = [];
 
   formControlArray: FormArray;
@@ -33,7 +36,8 @@ export class DailyReportComponent implements OnInit {
   dateSelected: string;
 
   constructor(
-    private reportService: ReportService
+    private reportService: ReportService,
+    private excelService: ExcelService
   ) { }
 
   ngOnInit() {
@@ -167,6 +171,22 @@ export class DailyReportComponent implements OnInit {
 
   log(a) {
     console.log(a);
+  }
+
+  exportAsXLSX():void {
+    let excelData = this.dataSource.map(function(obj) {
+      return {
+        วันเดือนปี : obj.receiptDate,
+        เลขที่ใบเสร็จรับเงิน : obj.receiptNumber,
+        รหัสรายได้ : obj.incomeCodeSc,
+        รายการ : obj.incomeListSc,
+        ชื่อสาขา : obj.branchName,
+        จำนวนเงิน : obj.amountOfMoney,
+        เครดิต : obj.credit,
+        ยอดคงเหลือ : obj.total,
+      }
+    });
+    this.excelService.exportAsExcelFile(excelData, 'sample');
   }
 
 }

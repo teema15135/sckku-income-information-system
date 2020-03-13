@@ -16,6 +16,7 @@ import { ViewModeDirective } from 'src/app/shared/editable/directive/view-mode.d
 import { EditModeDirective } from 'src/app/shared/editable/directive/edit-mode.directive';
 import { IonicModule } from '@ionic/angular';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @NgModule({
   declarations: [
@@ -41,5 +42,6 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     ReactiveFormsModule,
     ScrollingModule
   ],
+  providers: [ExcelService],
 })
 export class MainModule { }

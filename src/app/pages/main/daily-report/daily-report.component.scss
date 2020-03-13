@@ -31,3 +31,18 @@ table {
   margin-left: 2%;
   margin-top: 2%;
 }
+
+.downloadContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
+
+.downloadText {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--green-0)
+}
