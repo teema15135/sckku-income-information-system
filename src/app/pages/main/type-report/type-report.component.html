@@ -1,0 +1,136 @@
+<div class="example-container mat-elevation-z8">
+  <div class="d-flex justify-content-between">
+    <h2 class="font-weight-bold text-gray-1 title">
+      รายงานเงินรายได้แยกประเภท
+    </h2>
+  </div>
+
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="incomeCodeSc">
+      <th mat-header-cell *matHeaderCellDef width="5%">รหัสรายรับ SC</th>
+      <td mat-cell *matCellDef="let element">{{ element.scCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="incomeListSc">
+      <th mat-header-cell *matHeaderCellDef width="23%">รายการรายรับ</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.pl-4]="element.depth === 1"
+        [class.pl-5]="element.depth === 2"
+        [class.pl-6]="element.depth === 3"
+        [class.pl-7]="element.depth === 4"
+      >
+        {{ element.scName }}
+      </td>
+      <td mat-footer-cell *matFooterCellDef>รวมทั้งหมด</td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch1">
+      <th mat-header-cell *matHeaderCellDef>สำนักงานคณบดี</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[0] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch2">
+      <th mat-header-cell *matHeaderCellDef>นิติวิทย์</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[1] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch3">
+      <th mat-header-cell *matHeaderCellDef>วิทย์-ชีวภาพ</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[2] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch4">
+      <th mat-header-cell *matHeaderCellDef>วัสดุศาสตร์</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[3] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch5">
+      <th mat-header-cell *matHeaderCellDef>คณิตศาสตร์</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[4] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch6">
+      <th mat-header-cell *matHeaderCellDef>เคมี</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[5] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch7">
+      <th mat-header-cell *matHeaderCellDef>จุลชีววิทยา</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[6] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch8">
+      <th mat-header-cell *matHeaderCellDef>ชีวเคมี</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[7] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch9">
+      <th mat-header-cell *matHeaderCellDef>ชีววิทยา</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[8] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch10">
+      <th mat-header-cell *matHeaderCellDef>สิ่งแวดล้อม</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[9] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch11">
+      <th mat-header-cell *matHeaderCellDef>ฟิสิกส์</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[10] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch12">
+      <th mat-header-cell *matHeaderCellDef>คอมพิวเตอร์</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[11] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch13">
+      <th mat-header-cell *matHeaderCellDef>สถิติ</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[12] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch14">
+      <th mat-header-cell *matHeaderCellDef width="6%">วมว.</th>
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+        {{ element.values[13] | currency: " " }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>รวมทั้งหมด</th>
+      <td mat-cell *matCellDef="let element" class="boldText">{{ element.total }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr> -->
+  </table>
+</div>

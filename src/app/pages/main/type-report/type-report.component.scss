@@ -1,0 +1,57 @@
+.example-container {
+  height: 200%;
+  overflow: auto;
+  background-color: white;
+}
+
+table {
+  width: 200%;
+  background-color: white;
+  margin-bottom: 3%;
+}
+
+.headerStyle {
+  background-color: white;
+}
+
+.mat-cell {
+  font-size: 16px;
+}
+
+.mat-header-cell {
+  border-bottom: 3px solid #e0e0e0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.mat-form-field {
+  margin-top: 2%;
+  margin-right: 5%;
+}
+
+.title {
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.pl-4 {
+  font-weight: bold;
+}
+
+.pl-5 {
+  font-weight: bold;
+}
+
+.pl-6 {
+  font-weight: bold;
+  padding-left: 80px !important;
+}
+
+.pl-7 {
+  padding-left: 100px !important;
+}
+
+.boldText {
+  font-weight: bold;
+}

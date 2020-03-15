@@ -17,6 +17,7 @@ import { EditModeDirective } from 'src/app/shared/editable/directive/edit-mode.d
 import { IonicModule } from '@ionic/angular';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { ExcelService } from 'src/app/services/excel.service';
+import { TypeReportComponent } from './type-report/type-report.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ExcelService } from 'src/app/services/excel.service';
     SummaryReportComponent,
     EditableComponent,
     ViewModeDirective,
-    EditModeDirective
+    EditModeDirective,
+    TypeReportComponent
   ],
   imports: [
     CommonModule,

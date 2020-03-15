@@ -121,5 +121,34 @@ export class ReportService {
     });
   }
 
+  getTypeReportData() {
+    return new Promise((resolve, reject) => {
+      const http = this.http.get(`${environment.apiDomainName}/report/3`, {
+        observe: 'response'
+      }).subscribe(res => {
+        resolve(res.body['data']);
+        http.unsubscribe();
+      }, err => {
+        if (err.status === 401) {
+          // resolve([{
+          //   receiptDate: '-',
+          //   receiptNumber: '-',
+          //   accountCode: '-',
+          //   incomeCodeSc: '-',
+          //   incomeListKku: '-',
+          //   incomeListSc: '-',
+          //   details: '-',
+          //   receivingType: '-',
+          //   amountOfMoney: '-',
+          //   branchName: '-',
+          // }]);
+        } else {
+          reject(err);
+        }
+        http.unsubscribe();
+      });
+    });
+  }
+
 
 }
