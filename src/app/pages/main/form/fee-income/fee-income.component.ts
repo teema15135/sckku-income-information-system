@@ -206,7 +206,7 @@ export class FeeIncomeComponent implements OnInit {
         values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       }, {
         id: '120',
-        name: '12. สำนักงานคณบดี',
+        name: '12. กองบริหารงานคณะ',
         depth: 0,
         values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       }
