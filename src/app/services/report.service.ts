@@ -130,18 +130,25 @@ export class ReportService {
         http.unsubscribe();
       }, err => {
         if (err.status === 401) {
-          // resolve([{
-          //   receiptDate: '-',
-          //   receiptNumber: '-',
-          //   accountCode: '-',
-          //   incomeCodeSc: '-',
-          //   incomeListKku: '-',
-          //   incomeListSc: '-',
-          //   details: '-',
-          //   receivingType: '-',
-          //   amountOfMoney: '-',
-          //   branchName: '-',
-          // }]);
+          resolve([]);
+        } else {
+          reject(err);
+        }
+        http.unsubscribe();
+      });
+    });
+  }
+
+  getTypeReportTotal() {
+    return new Promise((resolve, reject) => {
+      const http = this.http.get(`${environment.apiDomainName}/report/3`, {
+        observe: 'response'
+      }).subscribe(res => {
+        resolve(res.body['total']);
+        http.unsubscribe();
+      }, err => {
+        if (err.status === 401) {
+          resolve([]);
         } else {
           reject(err);
         }

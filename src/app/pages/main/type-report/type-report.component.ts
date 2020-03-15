@@ -19,12 +19,20 @@ export class TypeReportComponent implements OnInit {
   displayedColumns: string[] = ['incomeCodeSc', 'incomeListSc', 'branch1', 'branch2', 'branch3', 'branch4', 'branch5', 'branch6', 'branch7', 'branch8', 'branch9', 'branch10', 'branch11', 'branch12', 'branch13', 'branch14', 'total'];
   // dataSource = ELEMENT_DATA;
   dataSource: any[] = [];
+  total: any[] = [];
 
   callService() {
     this.reportService.getTypeReportData().then((res: any[]) => {
-      console.log('res is ', res);
       this.dataSource = res;
     });
+    this.reportService.getTypeReportTotal().then((res: any[]) => {
+      console.log('res is ', res);
+      this.total = res;
+    });
+  }
+
+  getTotal(index) {
+    return this.total[index];
   }
 }
 
