@@ -5,6 +5,17 @@
     </h2>
   </div>
 
+  <mat-form-field>
+    <mat-label>ค้นหา</mat-label>
+    <input
+      matInput
+      type="text"
+      (keyup)="filterScCode($event)"
+      placeholder="รหัสรายได้-SC"
+      [formControl]="searchCodeFormControl"
+    />
+  </mat-form-field>
+
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="incomeCodeSc">
       <th mat-header-cell *matHeaderCellDef width="5%">รหัสรายรับ SC</th>

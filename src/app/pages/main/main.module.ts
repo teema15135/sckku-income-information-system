@@ -42,7 +42,7 @@ import { TypeReportComponent } from './type-report/type-report.component';
     MatSortModule,
     DemoMaterialModule,
     ReactiveFormsModule,
-    ScrollingModule
+    ScrollingModule,
   ],
   providers: [ExcelService],
 })
