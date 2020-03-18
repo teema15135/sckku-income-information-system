@@ -24,6 +24,10 @@ export class AuthService {
     private storage: StorageService
   ) { }
 
+  get role() {
+    return this.getUser().role;
+  }
+
   get isLogin() {
     return this.loggedIn.value;
   }

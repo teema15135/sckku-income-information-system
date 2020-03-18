@@ -4,6 +4,8 @@ import { SCNumber } from 'src/app/models/scMap.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RecordService } from 'src/app/services/record.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IncomeRecord } from 'src/app/models/record.model';
 
 @Component({
   selector: 'app-general-income',
@@ -17,17 +19,26 @@ export class GeneralIncomeComponent implements OnInit {
 
   private isSending = false;
 
+  selectedIncomeCode: string;
+
+  id: string;
+  incomeInfo: IncomeRecord;
+
   constructor(
     private formBuilder: FormBuilder,
     private recordService: RecordService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private router: Router,
+  ) {
+    this.getIncomeExtras();
+  }
 
   fg: FormGroup;
 
   ngOnInit() {
     this.initialSCNumberData();
     this.initialFormGroup();
+    this.getIncomeInfo();
   }
 
   initialSCNumberData() {
@@ -54,56 +65,125 @@ export class GeneralIncomeComponent implements OnInit {
     });
   }
 
+  getIncomeExtras() {
+    const state = this.router.getCurrentNavigation().extras.state;
+    if (state) {
+      this.recordService.getIncomeRecord(state.id);
+      this.id = state.id;
+    } else {
+      console.log('no state');
+    }
+  }
+
+  getIncomeInfo() {
+    if (this.id) {
+      this.recordService.getIncomeRecord(this.id).subscribe(
+        res => {
+          this.incomeInfo = res;
+          this.setupFormToMeetApiInfo(res);
+        }, err => {
+        }
+      );
+    }
+  }
+
+  setupFormToMeetApiInfo(info: IncomeRecord) {
+    this.fg.setValue({
+      receiptDate: info.receiptDate,       // วันที่ใบเสร็จรับเงิน
+      paymentLocation: info.paymentLocation,   // ได้รับเงินจาก
+      departmentName: info.departmentName,    // ชื่อหน่วยงาน
+      receiptNumber: info.receiptNumber,     // เลขที่ใบเสร็จรับเงิน
+      branchName: info.branchName,        // ชื่อสาขาวิชา
+      accountCode: info.accountCode,       // รหัสบัญชี*
+      incomeListKku: info.incomeListKku,     // รายการรายได้ - KKU*
+      incomeCodeSc: info.incomeCodeSc,      // รหัสรายได้ - SC*
+      incomeListSc: info.incomeListSc,      // รายการรายได้ - SC*
+      details: info.details,           // รายละเอียด
+      receivingType: info.receivingType,     // ประเภทการรับเงิน
+      dateDeposit: info.dateDeposit,       // วันที่นำฝาก (เช็ค/เงินโอน/ใบนำฝาก)
+      checkNumber: info.checkNumber,       // เลขที่เช็ค
+      checkDate: info.checkDate,         // วันที่เช็ค
+      amountOfMoney: info.amountOfMoney
+    });
+    document.getElementById('receiptDate').setAttribute('value', this.transformDateString(info.receiptDate));
+    document.getElementById('dateDeposit').setAttribute('value', this.transformDateString(info.dateDeposit));
+    document.getElementById('checkDate').setAttribute('value', this.transformDateString(info.checkDate));
+    document.getElementById('incomeCodeSc').setAttribute('placeHolder', this.transformDateString(info.incomeCodeSc));
+  }
+
+  transformDateString(dateStr: string) {
+    const arr = dateStr.split('/');
+    return `${arr[2]}-${arr[1]}-${arr[0]}`;
+  }
+
   onSelectSCNumber(event: SCNumber) {
     this.fg.get('accountCode').setValue(event.acc);
     this.fg.get('incomeListKku').setValue(event.name);
     this.fg.get('incomeListSc').setValue(event.name);
-    this.fg.get('incomeCodeSc').setValue(event.sc);
   }
 
   onDateSelect(event, fcName) {
     this.fg.get(fcName).setValue(`${event.day}/${event.month}/${event.year}`);
   }
 
-
-
   sendForm() {
     if (this.isSending) {
       return;
     }
     this.isSending = true;
-    console.log(this.fg.value);
     if (this.fg.value.receivingType === 'check') {
       if (this.fg.value.checkNumber === '' || this.fg.value.checkDate === '') {
         this.toastr.warning('กรุณากรอก หมายเลขเช็ค และวันที่เช็คให้ครบถ้วน');
         return;
       }
     }
-    this.recordService.saveIncomeRecord(this.fg.value).then(res => {
-      console.log(res);
-      this.toastr.success('บันทึกสำเร็จ');
-      this.isSending = false;
-      this.clearForm();
-    });
+    if (this.id) {
+      this.recordService.updateIncomeRecord({ ...this.fg.value, _id: this.id })
+        .subscribe(
+          res => {
+            this.toastr.success('แก้ไขสำเร็จ');
+            this.isSending = false;
+            this.router.navigate(['/main/summary-report']);
+          }, err => console.error(err)
+        );
+    } else {
+      this.recordService.saveIncomeRecord(this.fg.value).then(res => {
+        console.log(res);
+        this.toastr.success('บันทึกสำเร็จ');
+        this.isSending = false;
+        this.clearForm();
+      });
+    }
   }
 
   clearForm() {
-    this.fg.setValue({
-      receiptDate: '',       // วันที่ใบเสร็จรับเงิน
-      paymentLocation: '',   // ได้รับเงินจาก
-      departmentName: '',    // ชื่อหน่วยงาน
-      receiptNumber: '',     // เลขที่ใบเสร็จรับเงิน
-      branchName: '',        // ชื่อสาขาวิชา
-      accountCode: '',       // รหัสบัญชี*
-      incomeListKku: '',     // รายการรายได้ - KKU*
-      incomeCodeSc: '',      // รหัสรายได้ - SC*
-      incomeListSc: '',      // รายการรายได้ - SC*
-      details: '',           // รายละเอียด
-      receivingType: '',     // ประเภทการรับเงิน
-      dateDeposit: '',       // วันที่นำฝาก (เช็ค/เงินโอน/ใบนำฝาก)
-      checkNumber: '',       // เลขที่เช็ค
-      checkDate: '',         // วันที่เช็ค
-      amountOfMoney: ''
-    });
+    if (this.id) {
+      this.recordService.deleteIncomeRecord({ ...this.incomeInfo, _id: this.id })
+        .subscribe(
+          res => {
+            this.toastr.success('ยกเลิกรายการสำเร็จ');
+            this.isSending = false;
+            this.router.navigate(['/main/summary-report']);
+          }, err => console.error(err)
+        );
+    } else {
+      this.fg.setValue({
+        receiptDate: '',       // วันที่ใบเสร็จรับเงิน
+        paymentLocation: '',   // ได้รับเงินจาก
+        departmentName: '',    // ชื่อหน่วยงาน
+        receiptNumber: '',     // เลขที่ใบเสร็จรับเงิน
+        branchName: '',        // ชื่อสาขาวิชา
+        accountCode: '',       // รหัสบัญชี*
+        incomeListKku: '',     // รายการรายได้ - KKU*
+        incomeCodeSc: '',      // รหัสรายได้ - SC*
+        incomeListSc: '',      // รายการรายได้ - SC*
+        details: '',           // รายละเอียด
+        receivingType: '',     // ประเภทการรับเงิน
+        dateDeposit: '',       // วันที่นำฝาก (เช็ค/เงินโอน/ใบนำฝาก)
+        checkNumber: '',       // เลขที่เช็ค
+        checkDate: '',         // วันที่เช็ค
+        amountOfMoney: ''
+      });
+    }
   }
 }

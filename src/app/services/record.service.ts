@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IncomeRecord } from '../models/record.model';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import { subscribeOn } from 'rxjs/operators';
 import { Fee } from '../models/fee.model';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
@@ -28,6 +28,37 @@ export class RecordService {
         http.unsubscribe();
       });
     });
+  }
+
+  getIncomeRecord(recordId: string) {
+    return this.http.get<IncomeRecord>(`${environment.apiDomainName}/record/1/${recordId}`);
+  }
+
+  updateIncomeRecord(body: IncomeRecord) {
+    return this.http.put(`${environment.apiDomainName}/report/2`, body, {
+        observe: 'response'
+      });
+  }
+
+  deleteIncomeRecord(body: IncomeRecord) {
+    return this.http.put(`${environment.apiDomainName}/report/2`, {
+      _id: body._id,
+      receiptDate: body.receiptDate,
+      receiptNumber: body.receiptNumber,
+      paymentLocation: '',
+      departmentName: '',
+      branchName: '',
+      accountCode: '',
+      incomeListKku: '',
+      incomeCodeSc: '',
+      incomeListSc: 'ยกเลิก',
+      details: '',
+      receivingType: '',
+      dateDeposit: '',
+      checkNumber: '',
+      checkDate: '',
+      amountOfMoney: null,
+    }, { observe: 'response' });
   }
 
   getFeeIncome() {

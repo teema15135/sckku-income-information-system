@@ -11,6 +11,7 @@
               </td>
               <td class="w-25 py-2 input-table">
                 <input
+                  id="receiptDate"
                   (click)="inv.toggle()"
                   type="text"
                   class="form-control d-inline not-full-input mr-3"
@@ -72,6 +73,7 @@
               </td>
               <td class="w-25 py-2 input-table">
                 <input
+                  id="dateDeposit"
                   (click)="dep.toggle()"
                   type="text"
                   class="form-control d-inline not-full-input mr-3"
@@ -151,6 +153,7 @@
                 [ngClass]="{ 'd-none': this.fg.value.receivingType !== 'check' }"
               >
                 <input
+                  id="checkDate"
                   (click)="check.toggle()"
                   type="text"
                   class="form-control d-inline not-full-input mr-3"
@@ -170,6 +173,8 @@
               <td class="w-25 py-2 label-table text-gray-0">รหัสรายได้ - SC</td>
               <td class="w-25 py-2 input-table">
                 <ng-autocomplete
+                  formControlName="incomeCodeSc"
+                  id="incomeCodeSc"
                   [data]="scNumberData"
                   [searchKeyword]="scKeyword"
                   (selected)="onSelectSCNumber($event)"
@@ -261,9 +266,9 @@
           class="btn btn-primary mx-3"
           (click)="sendForm()"
         >
-          บันทึก
+          {{ id ? 'แก้ไข' : 'บันทึก' }}
         </button>
-        <button class="btn btn-gray mx-3" (click)="clearForm()">ยกเลิก</button>
+        <button class="btn btn-gray mx-3" [ngClass]="{ 'btn-gray': !id, 'btn-danger': id }" (click)="clearForm()">{{ id ? 'ยกเลิกรายการ' : 'ล้างฟอร์ม' }}</button>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { ReportService } from 'src/app/services/report.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary-report',
@@ -11,6 +12,7 @@ export class SummaryReportComponent implements OnInit {
 
   // ใบเสร็จเล่มที่, รหัสหน่วยงาน
   displayedColumns = [
+    'editButton',
     'receiptDate',
     'receiptNumber',
     'accountCode',
@@ -29,11 +31,16 @@ export class SummaryReportComponent implements OnInit {
   filterValue = 'all';
 
   constructor(
-    private reportService: ReportService
+    private reportService: ReportService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.callService();
+  }
+
+  onClickEditRecord(index: number) {
+    this.router.navigate(['/main/form/general'], { state: { id: this.dataSource[index]._id }});
   }
 
   callService() {
