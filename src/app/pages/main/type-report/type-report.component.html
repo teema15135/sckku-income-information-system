@@ -6,15 +6,28 @@
   </div>
 
   <mat-form-field>
-    <mat-label>ค้นหา</mat-label>
-    <input
-      matInput
-      type="text"
-      (keyup)="filterScCode($event)"
-      placeholder="รหัสรายได้-SC"
-      [formControl]="searchCodeFormControl"
-    />
+    <mat-label>สาขาวิชา</mat-label>
+    <mat-select multiple [(value)]="filterValue" (selectionChange)="changeBranchFilter($event)">
+      <mat-option value="branch1" selected>กองบริหารงานคณะ</mat-option>
+      <mat-option value="branch2" selected>นิติวิทย์</mat-option>
+      <mat-option value="branch3" selected>วิทย์-ชีวภาพ</mat-option>
+      <mat-option value="branch4" selected>วัสดุศาสตร์</mat-option>
+      <mat-option value="branch5" selected>คณิตศาสตร์</mat-option>
+      <mat-option value="branch6" selected>เคมี</mat-option>
+      <mat-option value="branch7" selected>จุลชีววิทยา</mat-option>
+      <mat-option value="branch8" selected>ชีวเคมี</mat-option>
+      <mat-option value="branch9" selected>ชีววิทยา</mat-option>
+      <mat-option value="branch10" selected>สิ่งแวดล้อม</mat-option>
+      <mat-option value="branch11" selected>ฟิสิกส์</mat-option>
+      <mat-option value="branch12" selected>คอมพิวเตอร์</mat-option>
+      <mat-option value="branch13" selected>สถิติ</mat-option>
+      <mat-option value="branch14" selected>วมว.</mat-option>
+    </mat-select>
   </mat-form-field>
+
+  <button (click)="toggleNoSub()" class="btn btn-primary">
+    แสดง / ย่อ รายการย่อย
+  </button>
 
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="incomeCodeSc">
@@ -40,7 +53,7 @@
 
     <ng-container matColumnDef="branch1">
       <th mat-header-cell *matHeaderCellDef>กองบริหารงานคณะ</th>
-      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3">
+      <td mat-cell *matCellDef="let element" [class.boldText]="element.depth === 1 || element.depth === 2 || element.depth === 3" >
         {{ element.values[0] | currency: " " }}
       </td>
       <td mat-footer-cell *matFooterCellDef>{{ getTotal(0) | currency: " " }}</td>
@@ -157,7 +170,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" [class.d-none]="row.depth === 4 && noSub"></tr>
     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: false"></tr>
   </table>
 </div>

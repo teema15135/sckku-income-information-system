@@ -9,6 +9,26 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class TypeReportComponent implements OnInit {
 
+  allDisplayedColumns: string[] = [
+    'incomeCodeSc',
+    'incomeListSc',
+    'branch1',
+    'branch2',
+    'branch3',
+    'branch4',
+    'branch5',
+    'branch6',
+    'branch7',
+    'branch8',
+    'branch9',
+    'branch10',
+    'branch11',
+    'branch12',
+    'branch13',
+    'branch14',
+    'total'
+  ];
+
   displayedColumns: string[] = [
     'incomeCodeSc',
     'incomeListSc',
@@ -34,6 +54,10 @@ export class TypeReportComponent implements OnInit {
   total: any[] = [];
   searchCodeFormControl: FormControl;
 
+  filterValue: string[];
+
+  noSub = false;
+
   constructor(
     private reportService: ReportService
   ) { }
@@ -41,6 +65,26 @@ export class TypeReportComponent implements OnInit {
   ngOnInit() {
     this.callService();
     this.searchCodeFormControl = new FormControl('', Validators.required);
+    this.filterValue = [
+      'branch1',
+      'branch2',
+      'branch3',
+      'branch4',
+      'branch5',
+      'branch6',
+      'branch7',
+      'branch8',
+      'branch9',
+      'branch10',
+      'branch11',
+      'branch12',
+      'branch13',
+      'branch14',
+    ];
+  }
+
+  toggleNoSub() {
+    this.noSub = !this.noSub;
   }
 
   filterScCode(event) {
@@ -51,7 +95,16 @@ export class TypeReportComponent implements OnInit {
       }
     }
     this.dataSource = tmp;
-    console.log(tmp);
+  }
+
+  changeBranchFilter(event) {
+    this.displayedColumns = [
+      'incomeCodeSc',
+      'incomeListSc',
+      ...this.filterValue,
+      'total'
+    ];
+    console.log(this.filterValue);
   }
 
   callService() {
@@ -95,7 +148,8 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: any[] = [
-  { accountCode: 1,
+  {
+    accountCode: 1,
     incomeCodeSc: 'Hydrogen',
     incomeListSc: 1.0079,
     branch1: 'H',
@@ -107,13 +161,13 @@ const ELEMENT_DATA: any[] = [
     branch7: '1',
     branch8: '1',
     branch9: '1',
-    branch10 : '1',
-    branch11 : '1',
-    branch12 : '1',
-    branch13 : '1',
-    branch14 : '1',
-    branch15 : '1',
-    branch16 : '1',
+    branch10: '1',
+    branch11: '1',
+    branch12: '1',
+    branch13: '1',
+    branch14: '1',
+    branch15: '1',
+    branch16: '1',
     total: '1',
   },
 ];
