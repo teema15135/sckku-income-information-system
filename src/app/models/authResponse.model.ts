@@ -3,4 +3,5 @@ export class LoginResponse {
   uid: string;
   username: string;
   token: string;
+  role: 'admin' | 'user';
 }

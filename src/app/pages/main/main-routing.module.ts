@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { DailyReportComponent } from './daily-report/daily-report.component';
 import { SummaryReportComponent } from './summary-report/summary-report.component';
 import { TypeReportComponent } from './type-report/type-report.component'
+import { AdminGuard } from 'src/app/services/admin.guard';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
         component: TypeReportComponent
       }, {
         path: 'form',
-        loadChildren: () => import('./form/form.module').then(m => m.FormModule)
+        loadChildren: () => import('./form/form.module').then(m => m.FormModule),
+        canActivate: [AdminGuard]
       }, {
         path: '',
         redirectTo: 'home',
