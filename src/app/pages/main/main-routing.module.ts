@@ -19,7 +19,8 @@ const routes: Routes = [
         component: HomeComponent
       }, {
         path: 'verify',
-        component: VerifyComponent
+        component: VerifyComponent,
+        canActivate: [AdminGuard]
       }, {
         path: 'daily-report',
         component: DailyReportComponent
