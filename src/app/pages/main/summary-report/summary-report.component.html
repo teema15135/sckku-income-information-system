@@ -2,6 +2,9 @@
   <div class="d-flex justify-content-between">
     <h2 class="font-weight-bold text-gray-1 title">รายงานบันทึกรายได้รวม</h2>
     <div class="d-flex filterContainer">
+      <div class="downloadContainer">
+        <button mat-button class="downloadText" (click)="exportAsXLSX()">Download Excel</button>
+      </div>
       <mat-form-field>
         <mat-label>ค้นหา</mat-label>
         <input

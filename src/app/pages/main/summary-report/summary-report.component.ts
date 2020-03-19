@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { ReportService } from 'src/app/services/report.service';
 import { Router } from '@angular/router';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-summary-report',
@@ -23,7 +24,7 @@ export class SummaryReportComponent implements OnInit {
     'receivingType',
     'amountOfMoney',
   ];
-  dataSource: PeriodicElement[] | { filter } = [];
+  dataSource: any = [];
 
   poolData: PeriodicElement[] = [];
 
@@ -31,7 +32,8 @@ export class SummaryReportComponent implements OnInit {
 
   constructor(
     private reportService: ReportService,
-    private router: Router
+    private router: Router,
+    private excelService: ExcelService,
   ) { }
 
   ngOnInit() {
@@ -44,19 +46,16 @@ export class SummaryReportComponent implements OnInit {
 
   callService() {
     this.reportService.getSummaryReportData().then((res: PeriodicElement[]) => {
-      console.log('res is ', res);
       this.dataSource = res;
       this.poolData = res;
     });
   }
 
   callServiceFinding(event: Event) {
-    console.log('clicked');
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     const incomeCodeSc = this.dataSource.filter;
     this.reportService.getSummaryReportFinding(incomeCodeSc).then((res: PeriodicElement[]) => {
-      console.log('res is ', res);
       this.dataSource = res;
     });
   }
@@ -73,6 +72,24 @@ export class SummaryReportComponent implements OnInit {
       }
       this.dataSource = tmp;
     }
+  }
+
+  exportAsXLSX(): void {
+    let excelData = this.dataSource.map(function (obj) {
+      return {
+        วันที่ใบเสร็จ: obj.receiptDate,
+        เลขที่ใบเสร็จ: obj.receiptNumber,
+        รหัสบัญชี: obj.accountCode,
+        รหัสรายได้SC: obj.incomeCodeSc,
+        รายการรายได้KKU: obj.incomeListKku,
+        รายการรายได้SC: obj.incomeListSc,
+        รายละเอียดรายได้SC: obj.details,
+        ชื่อสาขา: obj.branchName,
+        ประเภทการรับเงิน: obj.receivingType,
+        จำนวนเงิน: obj.amountOfMoney,
+      }
+    });
+    this.excelService.exportAsExcelFile(excelData, 'sample');
   }
 
 }
