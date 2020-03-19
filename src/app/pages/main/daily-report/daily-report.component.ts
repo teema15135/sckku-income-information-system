@@ -4,6 +4,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { ExcelService } from 'src/app/services/excel.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-daily-report',
@@ -23,6 +24,8 @@ export class DailyReportComponent implements OnInit {
     'total',
   ];
 
+  allData: any[] = [];
+
   dataSource: any[] = [];
 
   excelData: any[] = [];
@@ -35,6 +38,8 @@ export class DailyReportComponent implements OnInit {
 
   dateSelected: string;
 
+  filterValue: string[];
+
   constructor(
     private reportService: ReportService,
     private excelService: ExcelService
@@ -44,6 +49,22 @@ export class DailyReportComponent implements OnInit {
     this.formControlArray = new FormArray([]);
     this.initialAddRowFormGroup();
     this.callService();
+    this.filterValue = [
+      'กองบริหารงานคณะ',
+      'นิติวิทย์',
+      'วิทย์-ชีวภาพ',
+      'วัสดุศาสตร์',
+      'คณิตศาสตร์',
+      'เคมี',
+      'จุลชีววิทยา',
+      'ชีวเคมี',
+      'ชีววิทยา',
+      'สิ่งแวดล้อม',
+      'ฟิสิกส์',
+      'คอมพิวเตอร์',
+      'สถิติ',
+      'วมว.',
+    ];
   }
 
   initialAddRowFormGroup() {
@@ -57,6 +78,16 @@ export class DailyReportComponent implements OnInit {
       amountOfMoney: new FormControl('0', [Validators.required, Validators.min(0)]),
       credit: new FormControl('0', [Validators.required, Validators.min(0)]),
     });
+  }
+
+  isShowBranch(branchName: string) {
+    console.log(branchName);
+    for (const i in this.filterValue) {
+      if (branchName === i) {
+        return true;
+      }
+    }
+    return false;
   }
 
   addRowHandler() {
@@ -173,17 +204,17 @@ export class DailyReportComponent implements OnInit {
     console.log(a);
   }
 
-  exportAsXLSX():void {
-    let excelData = this.dataSource.map(function(obj) {
+  exportAsXLSX(): void {
+    let excelData = this.dataSource.map(function (obj) {
       return {
-        วันเดือนปี : obj.receiptDate,
-        เลขที่ใบเสร็จรับเงิน : obj.receiptNumber,
-        รหัสรายได้ : obj.incomeCodeSc,
-        รายการ : obj.incomeListSc,
-        ชื่อสาขา : obj.branchName,
-        จำนวนเงิน : obj.amountOfMoney,
-        เครดิต : obj.credit,
-        ยอดคงเหลือ : obj.total,
+        วันเดือนปี: obj.receiptDate,
+        เลขที่ใบเสร็จรับเงิน: obj.receiptNumber,
+        รหัสรายได้: obj.incomeCodeSc,
+        รายการ: obj.incomeListSc,
+        ชื่อสาขา: obj.branchName,
+        จำนวนเงิน: obj.amountOfMoney,
+        เครดิต: obj.credit,
+        ยอดคงเหลือ: obj.total,
       }
     });
     this.excelService.exportAsExcelFile(excelData, 'sample');

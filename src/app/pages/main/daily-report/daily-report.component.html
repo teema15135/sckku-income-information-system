@@ -1,15 +1,30 @@
 <div class="example-container mat-elevation-z8">
   <div class="d-flex justify-content-between">
     <h2 class="font-weight-bold text-gray-1 title">รายงานประจำวัน</h2>
+
+    <mat-form-field>
+      <mat-label>สาขาวิชา</mat-label>
+      <mat-select multiple [(value)]="filterValue" (selectionChange)="isShowBranch('กองบริหารงานคณะ')">
+        <mat-option value="กองบริหารงานคณะ">กองบริหารงานคณะ</mat-option>
+        <mat-option value="นิติวิทย์">นิติวิทย์</mat-option>
+        <mat-option value="วิทย์-ชีวภาพ">วิทย์-ชีวภาพ</mat-option>
+        <mat-option value="วัสดุศาสตร์">วัสดุศาสตร์</mat-option>
+        <mat-option value="คณิตศาสตร์">คณิตศาสตร์</mat-option>
+        <mat-option value="เคมี">เคมี</mat-option>
+        <mat-option value="จุลชีววิทยา">จุลชีววิทยา</mat-option>
+        <mat-option value="ชีวเคมี">ชีวเคมี</mat-option>
+        <mat-option value="ชีววิทยา">ชีววิทยา</mat-option>
+        <mat-option value="สิ่งแวดล้อม">สิ่งแวดล้อม</mat-option>
+        <mat-option value="ฟิสิกส์">ฟิสิกส์</mat-option>
+        <mat-option value="คอมพิวเตอร์">คอมพิวเตอร์</mat-option>
+        <mat-option value="สถิติ">สถิติ</mat-option>
+        <mat-option value="วมว.">วมว.</mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field>
       <mat-label>เลือกวันที่</mat-label>
-      <input
-        matInput
-        placeholder="วัน/เดือน/ปี"
-        [matDatepicker]="picker"
-        (dateInput)="addEventDatePicker($event)"
-        (dateChange)="addEventDatePicker($event)"
-      />
+      <input matInput placeholder="วัน/เดือน/ปี" [matDatepicker]="picker" (dateInput)="addEventDatePicker($event)"
+        (dateChange)="addEventDatePicker($event)" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -115,17 +130,14 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" [class.d-none]="filterValue.indexOf(row.branchName) === -1"></tr>
   </table>
-  <form
-    class="mt-5 px-5 d-flex flex-row justify-content-center"
-    [formGroup]="addRowFormGroup"
-    (ngSubmit)="addRowHandler()"
-  >
+  <form class="mt-5 px-5 d-flex flex-row justify-content-center" [formGroup]="addRowFormGroup"
+    (ngSubmit)="addRowHandler()">
     <input class="mx-2 form-control" formControlName="receiptDate" disabled
       style="flex-basis: 7rem; flex-grow: 1; flex-shrink: 1; min-width: 1px;">
-    <input class="mx-2 form-control" formControlName="receiptNumber" placeholder="เลขที่ใบเสร็จรับเงิน" id="receiptInputField"
-      style="flex-basis: 12rem; flex-grow: 1; flex-shrink: 1; min-width: 1px;">
+    <input class="mx-2 form-control" formControlName="receiptNumber" placeholder="เลขที่ใบเสร็จรับเงิน"
+      id="receiptInputField" style="flex-basis: 12rem; flex-grow: 1; flex-shrink: 1; min-width: 1px;">
     <input class="mx-2 form-control" formControlName="incomeCodeSc" placeholder="รหัสรายได้"
       style="flex-basis: 12rem; flex-grow: 1; flex-shrink: 1; min-width: 1px;">
     <input class="mx-2 form-control" formControlName="incomeListSc" placeholder="รายการ"
