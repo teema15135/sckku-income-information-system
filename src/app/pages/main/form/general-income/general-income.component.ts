@@ -108,7 +108,6 @@ export class GeneralIncomeComponent implements OnInit {
     document.getElementById('receiptDate').setAttribute('value', this.transformDateString(info.receiptDate));
     document.getElementById('dateDeposit').setAttribute('value', this.transformDateString(info.dateDeposit));
     document.getElementById('checkDate').setAttribute('value', this.transformDateString(info.checkDate));
-    document.getElementById('incomeCodeSc').setAttribute('placeHolder', this.transformDateString(info.incomeCodeSc));
   }
 
   transformDateString(dateStr: string) {
@@ -137,8 +136,10 @@ export class GeneralIncomeComponent implements OnInit {
         return;
       }
     }
+    const scCode = this.fg.value;
+    scCode.incomeCodeSc = scCode.incomeCodeSc.sc;
     if (this.id) {
-      this.recordService.updateIncomeRecord({ ...this.fg.value, _id: this.id })
+      this.recordService.updateIncomeRecord({ ...scCode, _id: this.id })
         .subscribe(
           res => {
             this.toastr.success('แก้ไขสำเร็จ');
@@ -147,7 +148,8 @@ export class GeneralIncomeComponent implements OnInit {
           }, err => console.error(err)
         );
     } else {
-      this.recordService.saveIncomeRecord(this.fg.value).then(res => {
+      console.log(scCode);
+      this.recordService.saveIncomeRecord(scCode).then(res => {
         console.log(res);
         this.toastr.success('บันทึกสำเร็จ');
         this.isSending = false;
