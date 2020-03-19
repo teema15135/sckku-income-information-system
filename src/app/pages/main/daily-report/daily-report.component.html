@@ -1,33 +1,37 @@
 <div class="example-container mat-elevation-z8">
   <div class="d-flex justify-content-between">
     <h2 class="font-weight-bold text-gray-1 title">รายงานประจำวัน</h2>
-
-    <mat-form-field>
-      <mat-label>สาขาวิชา</mat-label>
-      <mat-select multiple [(value)]="filterValue" (selectionChange)="isShowBranch('กองบริหารงานคณะ')">
-        <mat-option value="กองบริหารงานคณะ">กองบริหารงานคณะ</mat-option>
-        <mat-option value="นิติวิทย์">นิติวิทย์</mat-option>
-        <mat-option value="วิทย์-ชีวภาพ">วิทย์-ชีวภาพ</mat-option>
-        <mat-option value="วัสดุศาสตร์">วัสดุศาสตร์</mat-option>
-        <mat-option value="คณิตศาสตร์">คณิตศาสตร์</mat-option>
-        <mat-option value="เคมี">เคมี</mat-option>
-        <mat-option value="จุลชีววิทยา">จุลชีววิทยา</mat-option>
-        <mat-option value="ชีวเคมี">ชีวเคมี</mat-option>
-        <mat-option value="ชีววิทยา">ชีววิทยา</mat-option>
-        <mat-option value="สิ่งแวดล้อม">สิ่งแวดล้อม</mat-option>
-        <mat-option value="ฟิสิกส์">ฟิสิกส์</mat-option>
-        <mat-option value="คอมพิวเตอร์">คอมพิวเตอร์</mat-option>
-        <mat-option value="สถิติ">สถิติ</mat-option>
-        <mat-option value="วมว.">วมว.</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>เลือกวันที่</mat-label>
-      <input matInput placeholder="วัน/เดือน/ปี" [matDatepicker]="picker" (dateInput)="addEventDatePicker($event)"
-        (dateChange)="addEventDatePicker($event)" />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    <div class="d-flex filterContainer">
+      <div class="downloadContainer">
+        <button mat-button class="downloadText" (click)="exportAsXLSX()">Download Excel</button>
+      </div>
+      <mat-form-field>
+        <mat-label>สาขาวิชา</mat-label>
+        <mat-select multiple [(value)]="filterValue" (selectionChange)="isShowBranch('กองบริหารงานคณะ')">
+          <mat-option value="กองบริหารงานคณะ">กองบริหารงานคณะ</mat-option>
+          <mat-option value="นิติวิทย์">นิติวิทย์</mat-option>
+          <mat-option value="วิทย์-ชีวภาพ">วิทย์-ชีวภาพ</mat-option>
+          <mat-option value="วัสดุศาสตร์">วัสดุศาสตร์</mat-option>
+          <mat-option value="คณิตศาสตร์">คณิตศาสตร์</mat-option>
+          <mat-option value="เคมี">เคมี</mat-option>
+          <mat-option value="จุลชีววิทยา">จุลชีววิทยา</mat-option>
+          <mat-option value="ชีวเคมี">ชีวเคมี</mat-option>
+          <mat-option value="ชีววิทยา">ชีววิทยา</mat-option>
+          <mat-option value="สิ่งแวดล้อม">สิ่งแวดล้อม</mat-option>
+          <mat-option value="ฟิสิกส์">ฟิสิกส์</mat-option>
+          <mat-option value="คอมพิวเตอร์">คอมพิวเตอร์</mat-option>
+          <mat-option value="สถิติ">สถิติ</mat-option>
+          <mat-option value="วมว.">วมว.</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>เลือกวันที่</mat-label>
+        <input matInput placeholder="วัน/เดือน/ปี" [matDatepicker]="picker" (dateInput)="addEventDatePicker($event)"
+          (dateChange)="addEventDatePicker($event)" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
   </div>
 
   <table mat-table [dataSource]="dataSource">
@@ -152,7 +156,5 @@
       style="flex-basis: 5rem; flex-shrink: 0; flex-grow: 1;">เพิ่ม</button>
   </form>
 
-  <div class="downloadContainer">
-    <button mat-button class="downloadText" (click)="exportAsXLSX()">Download Excel</button>
-  </div>
+
 </div>

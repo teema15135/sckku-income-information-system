@@ -3,31 +3,31 @@
     <h2 class="font-weight-bold text-gray-1 title">
       รายงานเงินรายได้แยกประเภท
     </h2>
+    <div class="d-flex filterContainer">
+      <button (click)="toggleNoSub()" class="btn btn-primary buttonStyle">
+        แสดง / ย่อ รายการย่อย
+      </button>
+      <mat-form-field>
+        <mat-label>สาขาวิชา</mat-label>
+        <mat-select multiple [(value)]="filterValue" (selectionChange)="changeBranchFilter($event)">
+          <mat-option value="branch1">กองบริหารงานคณะ</mat-option>
+          <mat-option value="branch2">นิติวิทย์</mat-option>
+          <mat-option value="branch3">วิทย์-ชีวภาพ</mat-option>
+          <mat-option value="branch4">วัสดุศาสตร์</mat-option>
+          <mat-option value="branch5">คณิตศาสตร์</mat-option>
+          <mat-option value="branch6">เคมี</mat-option>
+          <mat-option value="branch7">จุลชีววิทยา</mat-option>
+          <mat-option value="branch8">ชีวเคมี</mat-option>
+          <mat-option value="branch9">ชีววิทยา</mat-option>
+          <mat-option value="branch10">สิ่งแวดล้อม</mat-option>
+          <mat-option value="branch11">ฟิสิกส์</mat-option>
+          <mat-option value="branch12">คอมพิวเตอร์</mat-option>
+          <mat-option value="branch13">สถิติ</mat-option>
+          <mat-option value="branch14">วมว.</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-
-  <mat-form-field>
-    <mat-label>สาขาวิชา</mat-label>
-    <mat-select multiple [(value)]="filterValue" (selectionChange)="changeBranchFilter($event)">
-      <mat-option value="branch1">กองบริหารงานคณะ</mat-option>
-      <mat-option value="branch2">นิติวิทย์</mat-option>
-      <mat-option value="branch3">วิทย์-ชีวภาพ</mat-option>
-      <mat-option value="branch4">วัสดุศาสตร์</mat-option>
-      <mat-option value="branch5">คณิตศาสตร์</mat-option>
-      <mat-option value="branch6">เคมี</mat-option>
-      <mat-option value="branch7">จุลชีววิทยา</mat-option>
-      <mat-option value="branch8">ชีวเคมี</mat-option>
-      <mat-option value="branch9">ชีววิทยา</mat-option>
-      <mat-option value="branch10">สิ่งแวดล้อม</mat-option>
-      <mat-option value="branch11">ฟิสิกส์</mat-option>
-      <mat-option value="branch12">คอมพิวเตอร์</mat-option>
-      <mat-option value="branch13">สถิติ</mat-option>
-      <mat-option value="branch14">วมว.</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button (click)="toggleNoSub()" class="btn btn-primary">
-    แสดง / ย่อ รายการย่อย
-  </button>
 
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="incomeCodeSc">

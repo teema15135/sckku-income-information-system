@@ -26,7 +26,8 @@ table {
 
 .mat-form-field {
   margin-top: 2%;
-  margin-right: 5%;
+  margin-right: 3%;
+  margin-left: 4%;
 }
 
 .title {
@@ -76,4 +77,16 @@ th.mat-header-cell {
 
 td.mat-footer-cell {
   text-align: right;
+}
+
+.filterContainer {
+  margin-right: 5%;
+  margin-top: 2%;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonStyle {
+  height: 40px;
+  width: 180px;
 }
