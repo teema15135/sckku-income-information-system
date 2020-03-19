@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class SummaryReportComponent implements OnInit {
 
-  // ใบเสร็จเล่มที่, รหัสหน่วยงาน
   displayedColumns = [
     'editButton',
     'receiptDate',
@@ -20,9 +19,9 @@ export class SummaryReportComponent implements OnInit {
     'incomeListKku',
     'incomeListSc',
     'details',
+    'branchName',
     'receivingType',
     'amountOfMoney',
-    'branchName',
   ];
   dataSource: PeriodicElement[] | { filter } = [];
 
@@ -87,8 +86,8 @@ export interface PeriodicElement {
   incomeListKku: string;
   incomeListSc: string;
   details: string;
+  branchName: string;
   receivingType: string;
   amountOfMoney: number;
-  branchName: string;
   filter?;
 }

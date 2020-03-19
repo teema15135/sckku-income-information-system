@@ -61,3 +61,19 @@ table {
   font-weight: bold;
   background-color: var(--gray-7);
 }
+
+.listHeader {
+  text-align: left !important;
+}
+
+.amountText {
+  text-align: right;
+}
+
+th.mat-header-cell {
+  text-align: right;
+}
+
+td.mat-footer-cell {
+  text-align: right;
+}
