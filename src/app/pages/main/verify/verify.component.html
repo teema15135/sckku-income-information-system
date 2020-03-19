@@ -1,21 +1,19 @@
 <div class="div-card pl-4 pr-4 pb-4">
   <table class="w-100 text-gray-0">
     <thead>
-      <!-- <th class="pl-5 pr-4 py-4">วันที่</th> -->
       <th class="pl-5 pr-4 py-4">ประเภท</th>
       <th class="pl-3 pr-4 py-4">รายการ</th>
-      <th class="pl-3 pr-4 py-4">ระบบ KKUFMIS</th>
-      <th class="pl-3 pr-4 py-4">คณะวิทยาศาสตร์</th>
-      <th class="pl-3 pr-4 py-4">ผลต่าง</th>
+      <th class="pl-3 pr-4 py-4 amountText">ระบบ KKUFMIS</th>
+      <th class="pl-3 pr-4 py-4 amountText">คณะวิทยาศาสตร์</th>
+      <th class="pl-3 pr-4 py-4 amountText">ผลต่าง</th>
     </thead>
     <tbody>
       <tr *ngFor="let item of tableSource">
-        <!-- <td class="pl-5 pr-4 py-3">{{ item.date }}</td> -->
         <td class="pl-5 pr-4 py-3">{{ item.type }}</td>
         <td class="pl-3 pr-4 py-3" [class.pl-5]="item.indent === 1">{{ item.name }}</td>
-        <td class="pl-3 pr-4 py-3">{{ item.kkufmis | currency: " " }}</td>
-        <td class="pl-3 pr-4 py-3">{{ item.sc | currency: " " }}</td>
-        <td class="pl-3 pr-4 py-3 boldText" [class.negative]="item.different < 0">{{ item.different | currency: " " }}</td>
+        <td class="pl-3 pr-4 py-3 amountText">{{ item.kkufmis | currency: " " }}</td>
+        <td class="pl-3 pr-4 py-3 amountText">{{ item.sc | currency: " " }}</td>
+        <td class="pl-3 pr-4 py-3 boldText amountText" [class.negative]="item.different < 0">{{ item.different | currency: " " }}</td>
       </tr>
     </tbody>
   </table>

@@ -80,10 +80,10 @@
     </ng-container>
 
     <ng-container matColumnDef="amountOfMoney">
-      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle amountText">
         จำนวนเงิน
       </th>
-      <td mat-cell *matCellDef="let element; let i=index;">
+      <td mat-cell *matCellDef="let element; let i=index;" class="amountText">
         <editable (update)="updateField(i, 'amountOfMoney')">
           <ng-template viewMode>{{ element.amountOfMoney | currency: " " }}</ng-template>
           <ng-template editMode>
@@ -94,10 +94,10 @@
     </ng-container>
 
     <ng-container matColumnDef="credit">
-      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle amountText">
         เครดิต
       </th>
-      <td mat-cell *matCellDef="let element; let i=index;">
+      <td mat-cell *matCellDef="let element; let i=index;" class="amountText">
         <editable (update)="updateField(i, 'credit')">
           <ng-template viewMode>{{ element.credit }}</ng-template>
           <ng-template editMode>
@@ -108,10 +108,10 @@
     </ng-container>
 
     <ng-container matColumnDef="total">
-      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle amountText">
         ยอดคงเหลือ
       </th>
-      <td mat-cell *matCellDef="let element; let i=index;">{{ element.total | currency: " " }}</td>
+      <td mat-cell *matCellDef="let element; let i=index;" class="amountText">{{ element.total | currency: " " }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
