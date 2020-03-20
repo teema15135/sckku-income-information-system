@@ -3,6 +3,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ReportService } from 'src/app/services/report.service';
 import { Router } from '@angular/router';
 import { ExcelService } from 'src/app/services/excel.service';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-summary-report',
@@ -12,6 +13,7 @@ import { ExcelService } from 'src/app/services/excel.service';
 export class SummaryReportComponent implements OnInit {
 
   displayedColumns = [
+    'select',
     'editButton',
     'receiptDate',
     'receiptNumber',
@@ -25,6 +27,8 @@ export class SummaryReportComponent implements OnInit {
     'amountOfMoney',
   ];
   dataSource: any = [];
+  selection = new SelectionModel<PeriodicElement>(true, []);
+  dataExcel: any = [];
 
   poolData: PeriodicElement[] = [];
 
@@ -75,7 +79,7 @@ export class SummaryReportComponent implements OnInit {
   }
 
   exportAsXLSX(): void {
-    let excelData = this.dataSource.map(function (obj) {
+    let excelData = this.dataExcel.map(function (obj) {
       return {
         วันที่ใบเสร็จ: obj.receiptDate,
         เลขที่ใบเสร็จ: obj.receiptNumber,
@@ -90,6 +94,35 @@ export class SummaryReportComponent implements OnInit {
       }
     });
     this.excelService.exportAsExcelFile(excelData, 'sample');
+  }
+
+  isAllSelected($event) {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.length;
+    return numSelected === numRows;
+  }
+  masterToggle($event) {
+    if ($event.checked) {
+      this.onCompleteRow(this.dataSource);
+    }
+    this.isAllSelected($event) ?
+      this.selection.clear() :
+      this.dataSource.forEach(row => this.selection.select(row));
+  }
+
+  selectRow($event, row) {
+    if ($event.checked) {
+      this.dataExcel.push(row);
+    }
+    else {
+      this.dataExcel.pop(row)
+    }
+  }
+
+  onCompleteRow(dataSource) {
+    dataSource.forEach(element => {
+      this.dataExcel.push(element)
+    });
   }
 
 }
