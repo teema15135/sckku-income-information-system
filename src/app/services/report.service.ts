@@ -71,6 +71,35 @@ export class ReportService {
     });
   }
 
+  getSummaryReportFindingMonth(month: string) {
+    return new Promise((resolve, reject) => {
+      const http = this.http.get(`${environment.apiDomainName}/report/2/month/${month}`, {
+        observe: 'response'
+      }).subscribe(res => {
+        resolve(res.body);
+        http.unsubscribe();
+      }, err => {
+        if (err.status === 401) {
+          resolve([{
+            receiptDate: '-',
+            receiptNumber: '-',
+            accountCode: '-',
+            incomeCodeSc: '-',
+            incomeListKku: '-',
+            incomeListSc: '-',
+            details: '-',
+            receivingType: '-',
+            amountOfMoney: '-',
+            branchName: '-',
+          }]);
+        } else {
+          reject(err);
+        }
+        http.unsubscribe();
+      });
+    });
+  }
+
   getDailyReportData() {
     return new Promise<any[]>((resolve, reject) => {
       const http = this.http.get<any[]>(`${environment.apiDomainName}/report/1`, {

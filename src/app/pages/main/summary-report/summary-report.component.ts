@@ -64,6 +64,13 @@ export class SummaryReportComponent implements OnInit {
     });
   }
 
+  callServiceMonth(month) {
+    this.reportService.getSummaryReportFindingMonth(month).then((res: PeriodicElement[]) => {
+      this.dataSource = res;
+      // this.poolData = res;
+    });
+  }
+
   changeBranchFilter(event: { source, value: string}) {
     if (event.value === 'all') {
       this.dataSource = this.poolData;
@@ -75,6 +82,14 @@ export class SummaryReportComponent implements OnInit {
         }
       }
       this.dataSource = tmp;
+    }
+  }
+
+  changeMonthFilter(event: { source, value: string}) {
+    if (event.value === 'all') {
+      this.dataSource = this.poolData;
+    } else {
+      this.callServiceMonth(event.value);
     }
   }
 
