@@ -18,6 +18,21 @@ import { IonicModule } from '@ionic/angular';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { ExcelService } from 'src/app/services/excel.service';
 import { TypeReportComponent } from './type-report/type-report.component';
+import { MAT_DATE_LOCALE } from '@angular/material';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'M/YYYY',
+  },
+  display: {
+    dateInput: 'M/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -44,6 +59,14 @@ import { TypeReportComponent } from './type-report/type-report.component';
     ReactiveFormsModule,
     ScrollingModule,
   ],
-  providers: [ExcelService],
+  providers: [
+    ExcelService,
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 export class MainModule { }

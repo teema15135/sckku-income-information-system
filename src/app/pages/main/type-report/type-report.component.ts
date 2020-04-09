@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/services/report.service';
 import { FormControl, Validators } from '@angular/forms';
+import * as _moment from 'moment';
+import { Moment } from 'moment';
+import {MatDatepicker} from '@angular/material/datepicker';
+
+const moment = _moment;
 
 @Component({
   selector: 'app-type-report',
@@ -58,12 +63,21 @@ export class TypeReportComponent implements OnInit {
 
   noSub = false;
 
+  date = new FormControl(moment());
+  month: any;
+  year: any;
+
   constructor(
     private reportService: ReportService
   ) { }
 
   ngOnInit() {
-    this.callService();
+    // this.callService();
+    const currentDate = new Date();
+    this.month = currentDate.getMonth() + 1;
+    this.year = currentDate.getFullYear();
+    this.callServiceMonthAndYear(this.month, this.year);
+    
     this.searchCodeFormControl = new FormControl('', Validators.required);
     this.filterValue = [
       'branch1',
@@ -113,13 +127,38 @@ export class TypeReportComponent implements OnInit {
       this.allDataSource = res;
     });
     this.reportService.getTypeReportTotal().then((res: any[]) => {
-      console.log('res is ', res);
+      this.total = res;
+    });
+  }
+
+  callServiceMonthAndYear(month: string, year: string) {
+    this.reportService.getTypeReportDataMonthAndYear(month, year).then((res: any[]) => {
+      this.dataSource = res;
+      this.allDataSource = res;
+    });
+    this.reportService.getTypeReportTotalMonthAndYear(month, year).then((res: any[]) => {
       this.total = res;
     });
   }
 
   getTotal(index) {
     return this.total[index];
+  }
+
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+    this.year = normalizedYear.year();
+  }
+
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    this.month = normalizedMonth.month() + 1
+    this.callServiceMonthAndYear(this.month, this.year);
+    datepicker.close();
   }
 }
 

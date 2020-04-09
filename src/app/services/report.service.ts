@@ -186,5 +186,41 @@ export class ReportService {
     });
   }
 
+  getTypeReportDataMonthAndYear(month: string, year: string) {
+    return new Promise((resolve, reject) => {
+      const http = this.http.get(`${environment.apiDomainName}/report/3/${month}/${year}`, {
+        observe: 'response'
+      }).subscribe(res => {
+        resolve(res.body['data']);
+        http.unsubscribe();
+      }, err => {
+        if (err.status === 401) {
+          resolve([]);
+        } else {
+          reject(err);
+        }
+        http.unsubscribe();
+      });
+    });
+  }
+
+  getTypeReportTotalMonthAndYear(month: string, year: string) {
+    return new Promise((resolve, reject) => {
+      const http = this.http.get(`${environment.apiDomainName}/report/3/${month}/${year}`, {
+        observe: 'response'
+      }).subscribe(res => {
+        resolve(res.body['total']);
+        http.unsubscribe();
+      }, err => {
+        if (err.status === 401) {
+          resolve([]);
+        } else {
+          reject(err);
+        }
+        http.unsubscribe();
+      });
+    });
+  }
+
 
 }
