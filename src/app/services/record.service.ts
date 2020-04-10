@@ -65,6 +65,10 @@ export class RecordService {
     return this.http.get<Fee>(`${environment.apiDomainName}/record/2`);
   }
 
+  getFeeIncomeSelectMonth(month: string, year: string) {
+    return this.http.get<Fee>(`${environment.apiDomainName}/record/2/${month}/${year}`);
+  }
+
   updateFeeIncome(fee: Fee) {
     return this.http.post(`${environment.apiDomainName}/record/2`, fee);
   }

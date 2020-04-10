@@ -17,16 +17,20 @@ export class FeeIncomeComponent implements OnInit {
 
   saving = false;
 
+  month: any;
+  year: any;
+
   constructor(
     private recordService: RecordService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
+    this.getMonthValue();
     this.initialFormModelValue();
     this.initialFormArray();
     this.setFormChangeListener();
-    this.recordService.getFeeIncome().subscribe(
+    this.recordService.getFeeIncomeSelectMonth(this.month, this.year).subscribe(
       (res: Fee) => {
         for (let i = 0; i < 36; i++) {
           for (let j = 0; j < 12; j++) {
@@ -35,9 +39,6 @@ export class FeeIncomeComponent implements OnInit {
         }
       }, err => console.error(err)
     );
-    // setInterval(() => {
-    //   console.log(this.formModel[0].values);
-    // }, 1000);
   }
 
   initialFormArray(): void {
@@ -269,7 +270,7 @@ export class FeeIncomeComponent implements OnInit {
       return;
     }
     this.saving = true;
-    this.recordService.updateFeeIncome({ fees: this.formModel }).subscribe(
+    this.recordService.updateFeeIncome({ month: this.month, year: this.year, fees: this.formModel }).subscribe(
       res => {
         this.toastr.success('บันทึกสำเร็จ');
       }, err => {
@@ -277,6 +278,23 @@ export class FeeIncomeComponent implements OnInit {
       }, () => {
         this.saving = false;
       }
+    );
+  }
+
+  getMonthValue() {
+    const date = ((document.getElementById("date") as HTMLInputElement).value);
+    const dateSplit = date.split('-');
+    this.month = dateSplit[1];
+    this.year = dateSplit[0];
+
+    this.recordService.getFeeIncomeSelectMonth(this.month, this.year).subscribe(
+      (res: Fee) => {
+        for (let i = 0; i < 36; i++) {
+          for (let j = 0; j < 12; j++) {
+            this.formArray[i].at(j).setValue(res.fees[i].values[j]);
+          }
+        }
+      }, err => console.error(err)
     );
   }
 

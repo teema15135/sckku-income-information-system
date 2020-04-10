@@ -1,4 +1,6 @@
 export class Fee {
+  month: string;
+  year: string;
   fees: Item[];
 }
 

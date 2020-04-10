@@ -1,7 +1,14 @@
 <div class="table-container mat-elevation-z8">
-  <h2 class="p-5 font-weight-bold text-gray-1 title">
-    บันทึกรายได้ค่าธรรมเนียมการศึกษา
-  </h2>
+  <div class="d-flex justify-content-between">
+    <h2 class="p-5 font-weight-bold text-gray-1 title">
+      บันทึกรายได้ค่าธรรมเนียมการศึกษา
+    </h2>
+    <div class="d-flex filterContainer">
+      <input type="month" class="form-control checking-field monthSelect" id="date" value="2020-04">
+      <button class="okButton" (click)="getMonthValue()">ตกลง</button>
+    </div>
+  </div>
+  
   <table mat-table [dataSource]="formModel">
     <ng-container matColumnDef="header1">
       <th
