@@ -97,7 +97,7 @@
     </ng-container>
 
     <ng-container matColumnDef="details">
-      <th mat-header-cell *matHeaderCellDef class="headerStyle">
+      <th mat-header-cell *matHeaderCellDef class="headerStyle" width="20%">
         รายละเอียดรายได้-SC
       </th>
       <td mat-cell *matCellDef="let element">{{ element.details }}</td>
@@ -131,11 +131,12 @@
     </ng-container>
 
     <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>
+      <th mat-header-cell *matHeaderCellDef width="4%">
         <mat-checkbox (change)="$event ? masterToggle($event) : null"
                       [checked]="selection.hasValue() && isAllSelected() == true"
                       [indeterminate]="selection.hasValue() && !isAllSelected()">
         </mat-checkbox>
+        เลือกเพื่อดาวน์โหลด
       </th>
       <td mat-cell *matCellDef="let row">
         <mat-checkbox (click)="$event.stopPropagation()"

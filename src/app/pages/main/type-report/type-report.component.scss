@@ -89,4 +89,40 @@ td.mat-footer-cell {
 .buttonStyle {
   height: 40px;
   width: 180px;
+  font-weight: lighter;
+  color: var(--gray-0);
+  background-color: var(--gray-5) !important;
+}
+
+.downloadContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+}
+
+.downloadText {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--green-0)
+}
+
+.monthYearContainer {
+}
+
+.box {
+  margin-right: 0%;
+}
+
+.okButtonStyle {
+  color: var(--gray-0);
+  height: 5%;
+  margin-top: 3%;
+  margin-left: 2%;
+}
+
+.pleaseText {
+  margin-top: 3%;
 }

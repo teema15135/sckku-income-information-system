@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import * as _moment from 'moment';
 import { Moment } from 'moment';
 import {MatDatepicker} from '@angular/material/datepicker';
+import { ExcelService } from 'src/app/services/excel.service';
 
 const moment = _moment;
 
@@ -53,7 +54,7 @@ export class TypeReportComponent implements OnInit {
     'branch14',
     'total'
   ];
-  // dataSource = ELEMENT_DATA;
+
   dataSource: any[] = [];
   allDataSource: any[] = [];
   total: any[] = [];
@@ -68,7 +69,8 @@ export class TypeReportComponent implements OnInit {
   year: any;
 
   constructor(
-    private reportService: ReportService
+    private reportService: ReportService,
+    private excelService: ExcelService
   ) { }
 
   ngOnInit() {
@@ -101,6 +103,10 @@ export class TypeReportComponent implements OnInit {
     this.noSub = !this.noSub;
   }
 
+  findMonthAndYear() {
+    this.callServiceMonthAndYear(this.month, this.year);
+  }
+
   filterScCode(event) {
     const tmp = [];
     for (const i of this.allDataSource) {
@@ -109,6 +115,20 @@ export class TypeReportComponent implements OnInit {
       }
     }
     this.dataSource = tmp;
+  }
+
+  changeMonthFilter(event: { source, value: string}) {
+    if (event.value === 'all') {
+    } else {
+      this.month = event.value;
+    }
+  }
+
+  changeYearFilter(event: { source, value: string}) {
+    if (event.value === 'all') {
+    } else {
+      this.year = event.value;
+    }
   }
 
   changeBranchFilter(event) {
@@ -160,6 +180,31 @@ export class TypeReportComponent implements OnInit {
     this.callServiceMonthAndYear(this.month, this.year);
     datepicker.close();
   }
+
+  exportAsXLSX(): void {
+    let excelData = this.dataSource.map(function (obj) {
+      return {
+        รหัสรายรับSC: obj.scCode,
+        รายการรายรับ: obj.scName,
+        กองบริหารงานคณะ: obj.values[0],
+        นิติวิทย์: obj.values[1],
+        วิทย์ชีวภาพ: obj.values[2],
+        วัสดุศาสตร์: obj.values[3],
+        คณิตศาสตร์: obj.values[4],
+        เคมี: obj.values[5],
+        จุลชีววิทยา: obj.values[6],
+        ชีวเคมี: obj.values[7],
+        ชีววิทยา: obj.values[8],
+        สิ่งแวดล้อม: obj.values[9],
+        ฟิสิกส์: obj.values[10],
+        คอมพิวเตอร์: obj.values[11],
+        สถิติ: obj.values[12],
+        วมว: obj.values[13],
+        รวมทั้งหมด: obj.total,
+      }
+    });
+    this.excelService.exportAsExcelFile(excelData, 'sample');
+  }
 }
 
 
@@ -185,28 +230,4 @@ export interface PeriodicElement {
   branch16: string;
   total: string;
 }
-
-const ELEMENT_DATA: any[] = [
-  {
-    accountCode: 1,
-    incomeCodeSc: 'Hydrogen',
-    incomeListSc: 1.0079,
-    branch1: 'H',
-    branch2: '1',
-    branch3: '1',
-    branch4: '1',
-    branch5: '1',
-    branch6: '1',
-    branch7: '1',
-    branch8: '1',
-    branch9: '1',
-    branch10: '1',
-    branch11: '1',
-    branch12: '1',
-    branch13: '1',
-    branch14: '1',
-    branch15: '1',
-    branch16: '1',
-    total: '1',
-  },
-];
+														
